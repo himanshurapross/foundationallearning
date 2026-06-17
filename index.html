@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapross Pharma | Simplified Foundational Learning Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1A3A8F;--blue2:#1565C0;--gold:#F59E0B;--gold2:#FCD34D;--green:#16A34A;--red:#DC2626;--bg:#EEF2FF;--text:#0F172A;--text2:#334155;--muted:#64748B;--border:#E2E8F0;--card:#fff;--r:14px;--shadow:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 16px 48px rgba(0,0,0,.16)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif}
+button{cursor:pointer;font-family:'Inter',sans-serif;border:none;transition:all .2s}
+input{font-family:'Inter',sans-serif}
+.screen{display:none;min-height:100vh;flex-direction:column}
+.screen.active{display:flex;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+/* WELCOME */
+#sw{background:linear-gradient(145deg,#0A1F6E,#1A3A8F,#1565C0);align-items:center;justify-content:center;padding:20px}
+.wcard{background:#fff;border-radius:22px;padding:40px 36px;width:100%;max-width:440px;box-shadow:var(--shadow-lg);animation:slideUp .6s ease}
+.whead{text-align:center;margin-bottom:26px}
+.w-pill{display:inline-flex;align-items:center;gap:7px;background:#EEF2FF;color:var(--blue);padding:7px 18px;border-radius:50px;font-size:12px;font-weight:700;margin-bottom:14px;border:1px solid #C7D2FE}
+.w-title{font-size:26px;font-weight:800;color:var(--text);line-height:1.25}
+.w-title span{color:var(--blue2)}
+.w-sub{color:var(--muted);font-size:13px;margin-top:5px}
+.w-div{height:1px;background:var(--border);margin:22px 0}
+.flbl{display:block;font-weight:600;color:var(--text2);margin-bottom:7px;font-size:13px}
+.finp{width:100%;padding:12px 15px;border:2px solid var(--border);border-radius:11px;font-size:15px;color:var(--text);outline:none;transition:.2s;margin-bottom:14px;background:#FAFBFF}
+.finp:focus{border-color:var(--blue2);background:#EFF6FF}
+.finp::placeholder{color:#CBD5E1}
+.btn-go{width:100%;padding:14px;background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;border-radius:11px;font-size:16px;font-weight:700;font-family:'Poppins',sans-serif;margin-top:4px;box-shadow:0 4px 18px rgba(21,101,192,.4)}
+.btn-go:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(21,101,192,.5)}
+.w-stats{display:flex;gap:12px;margin-top:22px;padding-top:20px;border-top:1px solid var(--border)}
+.wstat{flex:1;text-align:center;padding:12px 6px;background:#F8FAFF;border-radius:10px}
+.wstat-n{font-size:22px;font-weight:900;color:var(--blue2);font-family:'Poppins',sans-serif}
+.wstat-l{font-size:10px;color:var(--muted);margin-top:2px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+
+/* TOP NAV */
+.topnav{background:linear-gradient(135deg,#0A1F6E,#1A3A8F);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:500;box-shadow:0 3px 16px rgba(0,0,0,.2)}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-ico{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-title{font-family:'Poppins',sans-serif;font-weight:700;color:#fff;font-size:15px;line-height:1.1}
+.nav-title span{color:var(--gold)}
+.nav-sub{color:rgba(255,255,255,.6);font-size:10px;margin-top:1px}
+.nav-rep{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:6px 12px}
+.nav-rep-name{color:#fff;font-size:12px;font-weight:600;line-height:1.1}
+.nav-rep-hq{color:rgba(255,255,255,.6);font-size:10px;margin-top:1px}
+
+/* DASHBOARD */
+#sd{background:var(--bg)}
+.dash{padding:16px;max-width:1100px;margin:0 auto}
+.hero{background:linear-gradient(135deg,#0A1F6E,#1A3A8F,#1565C0);border-radius:18px;padding:22px 24px;margin-bottom:18px;position:relative;overflow:hidden}
+.hero::after{content:'🎓';position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:64px;opacity:.1}
+.hero-hi{color:rgba(255,255,255,.7);font-size:13px;margin-bottom:3px}
+.hero-name{color:#fff;font-size:20px;font-weight:800;font-family:'Poppins',sans-serif;margin-bottom:14px}
+.hero-name span{color:var(--gold)}
+.prog-box{background:rgba(255,255,255,.12);border-radius:10px;padding:14px 16px}
+.prog-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.prog-lbl{color:rgba(255,255,255,.8);font-size:12px;font-weight:600}
+.prog-val{color:var(--gold);font-weight:800;font-size:13px;font-family:'Poppins',sans-serif}
+.prog-bg{background:rgba(255,255,255,.2);border-radius:50px;height:8px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:50px;transition:width .6s ease}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.scard{background:#fff;border-radius:var(--r);padding:14px;box-shadow:var(--shadow);text-align:center}
+.scard-n{font-size:26px;font-weight:900;font-family:'Poppins',sans-serif}
+.scard-l{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.sn-blue{color:var(--blue2)}.sn-gold{color:var(--gold)}.sn-green{color:var(--green)}
+.sec-hdr{display:flex;align-items:center;gap:10px;margin:18px 0 10px}
+.sec-badge{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:5px 14px;border-radius:50px;font-size:11px;font-weight:700;font-family:'Poppins',sans-serif}
+.sec-cnt{color:var(--muted);font-size:12px}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.mcard{background:#fff;border-radius:var(--r);padding:17px;cursor:pointer;box-shadow:var(--shadow);border:2px solid transparent;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.mcard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+.mcard.done{border-color:var(--green)}
+.mcard.done::after{content:'✓';position:absolute;top:12px;right:13px;width:22px;height:22px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.mstrip{position:absolute;top:0;left:0;right:0;height:4px;border-radius:14px 14px 0 0}
+.mhdr{display:flex;align-items:center;gap:11px;margin-bottom:10px;padding-top:4px}
+.mico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0}
+.mnm{font-size:13px;font-weight:700;color:var(--text);font-family:'Poppins',sans-serif;line-height:1.3}
+.mst{font-size:11px;color:var(--muted);margin-top:2px}
+.mdesc{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:11px}
+.mftr{display:flex;align-items:center;justify-content:space-between}
+.mmeta{display:flex;gap:10px}
+.mmetai{font-size:11px;color:var(--muted)}
+.spill{font-size:11px;font-weight:700;padding:5px 12px;border-radius:50px}
+.sp-lock{background:#F1F5F9;color:var(--muted)}.sp-done{background:#DCFCE7;color:var(--green)}.sp-fail{background:#FEE2E2;color:var(--red)}
+.score-show{position:absolute;bottom:12px;right:14px;background:var(--green);color:#fff;padding:2px 9px;border-radius:50px;font-size:10px;font-weight:700;display:none}
+.mcard.done .score-show{display:block}
+
+/* LEARN */
+#sl{background:var(--bg)}
+.lnav{background:#fff;padding:13px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.07);position:sticky;top:0;z-index:200}
+.back-btn{width:34px;height:34px;border-radius:9px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.back-btn:hover{background:#E2E8F0}
+.lnav-t{font-size:14px;font-weight:700;color:var(--text);font-family:'Poppins',sans-serif}
+.lnav-s{font-size:11px;color:var(--muted)}
+.lbody{padding:16px;max-width:880px;margin:0 auto}
+.mbanner{border-radius:16px;padding:22px 20px;margin-bottom:14px;color:#fff;overflow:hidden;position:relative}
+.mbanner::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;background:rgba(255,255,255,.07);border-radius:50%}
+.mb-emoji{font-size:38px;margin-bottom:9px}
+.mb-title{font-size:20px;font-weight:800;font-family:'Poppins',sans-serif;margin-bottom:4px}
+.mb-sub{font-size:13px;opacity:.85;line-height:1.5}
+.mb-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.mb-tag{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);padding:3px 11px;border-radius:50px;font-size:11px;font-weight:600}
+.ptabs{display:flex;gap:7px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
+.ptab{padding:7px 16px;border-radius:50px;font-size:12px;font-weight:600;background:#fff;color:var(--muted);box-shadow:0 2px 6px rgba(0,0,0,.06);white-space:nowrap}
+.ptab.active{color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.18)}
+.pcard{background:#fff;border-radius:var(--r);margin-bottom:14px;box-shadow:var(--shadow);overflow:hidden}
+.phdr{padding:15px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ph-badge{background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff;padding:3px 9px;border-radius:50px;font-size:10px;font-weight:700}
+.ph-name{font-size:19px;font-weight:800;color:#fff;font-family:'Poppins',sans-serif}
+.ph-form{background:rgba(0,0,0,.15);color:#fff;padding:3px 9px;border-radius:50px;font-size:10px;margin-left:auto}
+.pbody{padding:18px}
+.cbox{background:#F8FAFF;border:1px solid #E8EFFF;border-radius:9px;padding:10px 14px;margin-bottom:13px}
+.cbox-lbl{font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.cbox-val{font-size:12px;color:var(--text);font-weight:600;line-height:1.5}
+.phook{font-size:13px;font-weight:700;color:var(--blue2);margin-bottom:11px;font-family:'Poppins',sans-serif}
+.kplist{display:grid;gap:7px;margin-bottom:13px}
+.kp{display:flex;gap:11px;padding:10px 13px;background:#F8FAFF;border-radius:9px;border-left:3px solid var(--blue2)}
+.kp-ico{font-size:17px;flex-shrink:0;margin-top:1px}
+.kp-title{font-size:10px;font-weight:700;color:var(--blue2);text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.kp-text{font-size:12px;color:var(--text2);line-height:1.4}
+.ilbl{font-size:10px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+.itags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.itag{background:#EFF6FF;color:var(--blue2);border:1px solid #BFDBFE;padding:4px 11px;border-radius:50px;font-size:11px;font-weight:600}
+.tagbox{background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;padding:11px 15px;border-radius:9px;text-align:center;font-size:13px;font-weight:700;font-family:'Poppins',sans-serif}
+.qcta{background:#fff;border-radius:var(--r);padding:24px 20px;margin-bottom:20px;text-align:center;box-shadow:var(--shadow)}
+.qcta-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;font-family:'Poppins',sans-serif}
+.qcta-sub{color:var(--muted);font-size:13px;margin-bottom:16px;line-height:1.6}
+.qcta-info{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.qcta-pill{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text2)}
+.btn-sq{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:linear-gradient(135deg,var(--gold),#D97706);color:#fff;border-radius:11px;font-size:15px;font-weight:700;font-family:'Poppins',sans-serif;box-shadow:0 4px 18px rgba(245,158,11,.45)}
+.btn-sq:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(245,158,11,.55)}
+
+/* QUIZ */
+#sq{background:var(--bg)}
+.qnav{background:#fff;padding:13px 17px;box-shadow:0 2px 10px rgba(0,0,0,.07);position:sticky;top:0;z-index:200}
+.qnav-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;gap:10px}
+.qtitle{font-size:13px;font-weight:700;color:var(--text);font-family:'Poppins',sans-serif;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.live-sc{display:flex;align-items:center;gap:6px;background:var(--bg);padding:5px 12px;border-radius:50px;font-size:12px;font-weight:700}
+.ls-c{color:var(--green)}.ls-w{color:var(--red)}
+.qnav-bot{display:flex;align-items:center;gap:10px}
+.qcnt{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap}
+.qpb{flex:1;background:#F1F5F9;border-radius:50px;height:6px;overflow:hidden}
+.qpb-fill{height:100%;background:linear-gradient(90deg,var(--blue2),#2196F3);border-radius:50px;transition:width .4s ease}
+.qbody{padding:16px;max-width:660px;margin:0 auto}
+.qcard{background:#fff;border-radius:var(--r);padding:22px 20px;margin-bottom:13px;box-shadow:var(--shadow)}
+.qnum{font-size:11px;font-weight:700;color:var(--blue2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.qtxt{font-size:16px;font-weight:600;color:var(--text);line-height:1.6;font-family:'Poppins',sans-serif}
+.opts{display:grid;gap:9px;margin-top:18px}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#F8FAFF;border:2px solid var(--border);border-radius:11px;text-align:left;font-size:13px;font-weight:600;color:var(--text);width:100%;transition:.18s}
+.opt:hover:not(:disabled){background:#EFF6FF;border-color:#93C5FD}
+.opt-l{width:30px;height:30px;border-radius:8px;background:#fff;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'Poppins',sans-serif}
+.opt.correct{background:#DCFCE7;border-color:var(--green);color:#14532D}
+.opt.correct .opt-l{background:var(--green);color:#fff;border-color:var(--green)}
+.opt.wrong{background:#FEE2E2;border-color:var(--red);color:#7F1D1D}
+.opt.wrong .opt-l{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.reveal{background:#DCFCE7;border-color:var(--green);opacity:.6}
+.opt.reveal .opt-l{background:var(--green);color:#fff;border-color:var(--green)}
+.opt:disabled{cursor:default}
+.expbox{display:none;margin-top:12px;padding:12px 15px;border-radius:10px;font-size:13px;line-height:1.55}
+.expbox.show{display:block}
+.exp-c{background:#DCFCE7;border-left:4px solid var(--green);color:#14532D}
+.exp-w{background:#FEF3C7;border-left:4px solid var(--gold);color:#78350F}
+.explbl{font-weight:700;margin-bottom:3px;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.nwrap{display:none;text-align:center;margin-top:12px}
+.nwrap.show{display:block}
+.btn-next{display:inline-flex;align-items:center;gap:7px;padding:13px 30px;background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;border-radius:11px;font-size:14px;font-weight:700;font-family:'Poppins',sans-serif;box-shadow:0 4px 14px rgba(21,101,192,.3)}
+.btn-next:hover{transform:translateY(-2px)}
+
+/* RESULT */
+#sr{background:var(--bg);align-items:center;justify-content:center;padding:20px;min-height:100vh}
+.rcard{background:#fff;border-radius:22px;padding:30px 22px;max-width:460px;width:100%;box-shadow:var(--shadow-lg);text-align:center;animation:slideUp .5s ease}
+.ring-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative}
+.ring-svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:#F1F5F9;stroke-width:14}
+.ring-prog{fill:none;stroke-width:14;stroke-linecap:round;stroke-dasharray:283;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)}
+.ring-pass{stroke:var(--green)}.ring-fail{stroke:var(--red)}
+.ring-center{position:absolute;text-align:center}
+.ring-emoji{font-size:26px;margin-bottom:2px}
+.ring-score{font-size:28px;font-weight:900;font-family:'Poppins',sans-serif;line-height:1}
+.ring-lbl{font-size:10px;color:var(--muted);font-weight:600;margin-top:1px}
+.pass .ring-score{color:var(--green)}.fail .ring-score{color:var(--red)}
+.rtitle{font-size:21px;font-weight:800;font-family:'Poppins',sans-serif;margin-bottom:5px}
+.rsub{font-size:13px;color:var(--muted);margin-bottom:18px}
+.rdetails{display:flex;gap:10px;margin-bottom:18px}
+.rd{flex:1;background:var(--bg);border-radius:11px;padding:12px;text-align:center}
+.rd-n{font-size:22px;font-weight:900;font-family:'Poppins',sans-serif}
+.rd-l{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.rbtns{display:flex;flex-direction:column;gap:8px}
+.btn-cert{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;background:linear-gradient(135deg,#16A34A,#15803D);color:#fff;border-radius:11px;font-size:14px;font-weight:700;font-family:'Poppins',sans-serif}
+.btn-cert:hover{transform:translateY(-1px)}
+.btn-retry{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;background:#F1F5F9;color:var(--text);border-radius:11px;font-size:14px;font-weight:700;font-family:'Poppins',sans-serif}
+.btn-retry:hover{background:#E2E8F0}
+.btn-home{display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;border-radius:11px;font-size:14px;font-weight:700;font-family:'Poppins',sans-serif}
+
+/* REVIEW */
+#srev{background:var(--bg)}
+.revbody{padding:16px;max-width:700px;margin:0 auto}
+.rev-h{font-size:19px;font-weight:800;color:var(--text);font-family:'Poppins',sans-serif;margin-bottom:4px}
+.rev-s{color:var(--muted);font-size:13px;margin-bottom:16px}
+.rev-item{background:#fff;border-radius:var(--r);padding:17px 18px;margin-bottom:11px;box-shadow:var(--shadow)}
+.rev-qrow{display:flex;gap:11px;margin-bottom:11px}
+.rqico{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
+.rqico.c{background:var(--green)}.rqico.w{background:var(--red)}
+.rev-qtxt{font-size:14px;font-weight:600;color:var(--text);line-height:1.5;font-family:'Poppins',sans-serif}
+.rev-opts{display:grid;gap:6px}
+.ropt{padding:8px 13px;border-radius:8px;font-size:12px;font-weight:600}
+.ropt-c{background:#DCFCE7;color:#14532D;border:1px solid #86EFAC}
+.ropt-w{background:#FEE2E2;color:#7F1D1D;border:1px solid #FCA5A5}
+.ropt-n{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+.rev-exp{margin-top:9px;padding:9px 13px;background:#FEF9EC;border-left:3px solid var(--gold);border-radius:8px;font-size:12px;color:#78350F;line-height:1.5}
+
+/* CERTIFICATE */
+.cert-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:16px}
+.cert-ov.show{display:flex}
+.cert-wrap{background:#fff;border-radius:18px;max-width:700px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);max-height:95vh;overflow-y:auto}
+.ctb{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:#F8FAFF;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}
+.ctb-t{font-weight:700;font-family:'Poppins',sans-serif;color:var(--text);font-size:13px}
+.ctb-btns{display:flex;gap:7px}
+.btn-print{display:flex;align-items:center;gap:5px;padding:7px 14px;background:var(--blue2);color:#fff;border-radius:7px;font-size:12px;font-weight:600}
+.btn-cc{display:flex;align-items:center;gap:5px;padding:7px 14px;background:#F1F5F9;color:var(--text);border-radius:7px;font-size:12px;font-weight:600}
+#ci{padding:24px}
+.certificate{border:3px solid #0A1F6E;border-radius:10px;overflow:hidden}
+.ct{background:linear-gradient(135deg,#061244,#0A1F6E,#1A3A8F);padding:15px 24px;display:flex;justify-content:space-between;align-items:center}
+.ct-brand{font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:16px}
+.ct-brand span{color:var(--gold)}
+.ct-sub{color:rgba(255,255,255,.6);font-size:10px;margin-top:1px}
+.cgold{background:linear-gradient(90deg,#D97706,var(--gold),var(--gold2),var(--gold),#D97706);height:4px}
+.cbody{padding:32px 36px;text-align:center;background:linear-gradient(180deg,#fff 0%,#FAFBFF 100%);position:relative}
+.cwm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:900;font-size:80px;color:#0A1F6E;opacity:.025;pointer-events:none;letter-spacing:4px}
+.c-of{font-size:11px;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.c-main{font-size:26px;font-weight:800;color:#0A1F6E;font-family:'Poppins',sans-serif;margin-bottom:18px}
+.c-div{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:18px}
+.cdline{height:1px;width:55px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.cdstar{color:var(--gold);font-size:14px;letter-spacing:3px}
+.c-pt{font-size:11px;color:#94A3B8;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.c-name{font-size:30px;font-weight:900;color:var(--text);font-family:'Poppins',sans-serif;display:inline-block;border-bottom:2px solid var(--gold);padding-bottom:4px;margin-bottom:5px}
+.c-hq{font-size:13px;color:var(--muted);margin-bottom:20px}
+.c-for{font-size:12px;color:#94A3B8;margin-bottom:7px}
+.c-mod{font-size:18px;font-weight:800;color:var(--blue2);font-family:'Poppins',sans-serif;margin-bottom:7px}
+.c-chip{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#16A34A,#15803D);color:#fff;padding:6px 20px;border-radius:50px;font-weight:700;font-size:13px;margin-bottom:24px}
+.c-meta{display:flex;justify-content:center;gap:36px;padding:14px;background:var(--bg);border-radius:10px}
+.cmi{text-align:center}
+.cmi-l{font-size:10px;color:#94A3B8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.cmi-v{font-size:13px;font-weight:700;color:var(--text);font-family:'Poppins',sans-serif}
+.cftr{background:linear-gradient(135deg,#0A1F6E,#1565C0);padding:12px 24px;display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.cftr-l{color:rgba(255,255,255,.7);font-size:10px}
+.cftr-r{color:#fff;font-size:10px;font-weight:600}
+.conf{position:fixed;width:8px;height:8px;border-radius:2px;z-index:10000;pointer-events:none;animation:fall linear forwards}
+@media(max-width:580px){.wcard{padding:26px 18px}.w-title{font-size:21px}.mgrid{grid-template-columns:1fr}.rdetails{flex-direction:column}.c-meta{gap:14px}.c-name{font-size:22px}#ci{padding:12px}}
+@media print{body>*:not(.cert-ov){display:none!important}.cert-ov{display:flex!important;position:static!important;background:none!important;padding:0!important}.cert-wrap{box-shadow:none!important;border-radius:0!important;max-height:none!important}.ctb{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="screen active" id="sw">
+  <div class="wcard">
+    <div class="whead">
+      <div class="w-pill">💊 Rapross Pharmaceuticals Pvt. Ltd.</div>
+      <div class="w-title">Foundational <span>Learning</span> Portal</div>
+      <div class="w-sub">Lets Learn Together</div>
+    </div>
+    <div class="w-div"></div>
+    <label class="flbl">Full Name</label>
+    <input class="finp" id="inp-name" type="text" placeholder="Enter your full name" maxlength="60">
+   <label class="flbl">Password</label>
+<input class="finp" id="inp-hq" type="password" placeholder="Enter Password" maxlength="10">
+    <button class="btn-go" onclick="startApp()">Start Training →</button>
+    <div class="w-stats">
+      <div class="wstat"><div class="wstat-n">11</div><div class="wstat-l">Modules</div></div>
+      <div class="wstat"><div class="wstat-n">110</div><div class="wstat-l">Questions</div></div>
+      <div class="wstat"><div class="wstat-n">11</div><div class="wstat-l">Certificates</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="sd">
+  <nav class="topnav">
+    <div class="nav-brand">
+      <div class="nav-ico">💊</div>
+      <div><div class="nav-title">Rapross <span>Pharma</span></div><div class="nav-sub">Foundational Learning Portal</div></div>
+    </div>
+    <div class="nav-rep">
+      <div class="nav-rep-name" id="nav-nm"></div>
+      <div class="nav-rep-hq" id="nav-hq"></div>
+    </div>
+  </nav>
+  <div class="dash">
+    <div class="hero">
+      <div class="hero-hi">Welcome,</div>
+      <div class="hero-name" id="hero-name">Good to see you <span>here!</span></div>
+      <div class="prog-box">
+        <div class="prog-row"><div class="prog-lbl">Overall Progress</div><div class="prog-val" id="prog-val">0 / 11 Modules</div></div>
+        <div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="scard"><div class="scard-n sn-blue">11</div><div class="scard-l">Total Modules</div></div>
+      <div class="scard"><div class="scard-n sn-gold" id="st-done">0</div><div class="scard-l">Completed</div></div>
+      <div class="scard"><div class="scard-n sn-green" id="st-cert">0</div><div class="scard-l">Certificates</div></div>
+    </div>
+    <div id="dash-content"></div>
+  </div>
+</div>
+
+<div class="screen" id="sl">
+  <div class="lnav">
+    <button class="back-btn" onclick="showDashboard()">←</button>
+    <div><div class="lnav-t" id="lnav-t">Module</div><div class="lnav-s" id="lnav-s">Study Material</div></div>
+  </div>
+  <div class="lbody" id="lbody"></div>
+</div>
+
+<div class="screen" id="sq">
+  <div class="qnav">
+    <div class="qnav-top">
+      <div class="qtitle" id="qtitle">Quiz</div>
+      <div class="live-sc"><span class="ls-c" id="ls-c">✅ 0</span>&nbsp;<span class="ls-w" id="ls-w">❌ 0</span></div>
+    </div>
+    <div class="qnav-bot">
+      <div class="qcnt" id="qcnt">Q 1 / 10</div>
+      <div class="qpb"><div class="qpb-fill" id="qpb-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+  <div class="qbody" id="qbody"></div>
+</div>
+
+<div class="screen" id="sr">
+  <div class="rcard" id="rcard">
+    <div class="ring-wrap">
+      <svg class="ring-svg" width="130" height="130" viewBox="0 0 100 100">
+        <circle class="ring-bg" cx="50" cy="50" r="45"/>
+        <circle class="ring-prog" id="ring-prog" cx="50" cy="50" r="45" style="stroke-dashoffset:283"/>
+      </svg>
+      <div class="ring-center">
+        <div class="ring-emoji" id="r-emoji">🎉</div>
+        <div class="ring-score" id="r-score">9</div>
+        <div class="ring-lbl">out of 10</div>
+      </div>
+    </div>
+    <div class="rtitle" id="r-title">Well Done!</div>
+    <div class="rsub" id="r-sub">You passed the quiz.</div>
+    <div class="rdetails">
+      <div class="rd"><div class="rd-n" id="rd-c" style="color:var(--green)">0</div><div class="rd-l">Correct</div></div>
+      <div class="rd"><div class="rd-n" id="rd-w" style="color:var(--red)">0</div><div class="rd-l">Wrong</div></div>
+      <div class="rd"><div class="rd-n" style="color:var(--gold)">85%</div><div class="rd-l">Pass Mark</div></div>
+    </div>
+    <div class="rbtns" id="rbtns"></div>
+  </div>
+</div>
+
+<div class="screen" id="srev">
+  <div class="lnav">
+    <button class="back-btn" onclick="goTo('sr')">←</button>
+    <div><div class="lnav-t">Answer Review</div><div class="lnav-s">See where you went wrong</div></div>
+  </div>
+  <div class="revbody" id="revbody"></div>
+</div>
+
+<div class="cert-ov" id="cert-ov">
+  <div class="cert-wrap">
+    <div class="ctb">
+      <div class="ctb-t">🏆 Certificate of Completion</div>
+      <div class="ctb-btns">
+        <button class="btn-print" onclick="window.print()">🖨️ Print</button>
+        <button class="btn-cc" onclick="closeCert()">✕ Close</button>
+      </div>
+    </div>
+    <div id="ci">
+      <div class="certificate">
+        <div class="ct">
+          <div><div class="ct-brand">Rapross <span>Pharmaceuticals</span></div><div class="ct-sub">A Friendly Hand in Healthcare</div></div>
+          <div style="text-align:right"><div style="color:var(--gold);font-size:13px;font-weight:700;font-family:'Poppins',sans-serif">🏆 CERTIFIED</div><div style="color:rgba(255,255,255,.6);font-size:10px">MR Training Portal</div></div>
+        </div>
+        <div class="cgold"></div>
+        <div class="cbody">
+          <div class="cwm">RAPROSS</div>
+          <div class="c-of">Certificate of Completion</div>
+          <div class="c-main">Product Knowledge Training</div>
+          <div class="c-div"><div class="cdline"></div><div class="cdstar">★ ★ ★</div><div class="cdline"></div></div>
+          <div class="c-pt">This is to certify that</div>
+          <div class="c-name" id="cert-name">Rep Name</div>
+          <div class="c-hq" id="cert-hq">HQ: Location</div>
+          <div class="c-for">has successfully completed the training module for</div>
+          <div class="c-mod" id="cert-mod">Module Name</div>
+          <div class="c-chip" id="cert-sc">Score: 10/10 · 100% · PASSED</div>
+          <div class="c-meta">
+            <div class="cmi"><div class="cmi-l">Date</div><div class="cmi-v" id="cert-dt">—</div></div>
+            <div class="cmi"><div class="cmi-l">Department</div><div class="cmi-v" id="cert-sec">—</div></div>
+            <div class="cmi"><div class="cmi-l">Valid For</div><div class="cmi-v">1 Year</div></div>
+            <div class="cmi"><div class="cmi-l">Status</div><div class="cmi-v" style="color:var(--green)">✓ PASSED</div></div>
+          </div>
+        </div>
+        <div class="cgold"></div>
+        <div class="cftr">
+          <div class="cftr-l">Rapross Pharmaceuticals Pvt. Ltd. | 2nd Floor, Garg Plaza, Sector 8, Rohini, New Delhi</div>
+          <div class="cftr-r">🔒 Verified Certificate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const LINES=[
+  {id:'lcz',name:'LCZ Series',subtitle:'Allergy & Cold',icon:'🌸',color:'#6A1B9A',light:'#F3E5F5',section:'Physician & Ortho',
+   desc:'Anti-allergy medicines — from runny nose to asthma and cough',
+   products:[
+    {name:'LCZ 5 / LCZ 10',form:'Tablet & Syrup',badge:'Anti-Allergy',comp:'Levocetirizine 5mg or 10mg Tablet | Levocetirizine 2.5mg/5ml Syrup',color:'#6A1B9A',
+     hook:'Levocetirizine is an anti-allergy medicine that helps reduce sneezing, runny nose and itching.',
+     kps:[{i:'⚡',t:'Allergy',x:'Allergy occurs when the body releases histamine in response to allergens (Which causes Allergy) such as dust, pollen, smoke, weather changes. Common symptoms: Sneezing, Runny Nose, Watery Eyes, Itching, Skin Allergy. Allergic Rhinitis is the most common allergic'},
+          {i:'🔵',t:'Mechanism of Action',x:'Levocetirizine selectively blocks H1 receptors and inhibits histamine action responsible for allergy symptoms. By blocking histamine, LCZ reduces sneezing, rhinorrhea, itching, and watery eyes.'},
+          {i:'🟢',t:'Unique Selling Points (USPs)',x:'Rapidly resolves allergy symptoms with faster onset of action and longer duration of action.'},
+          {i:'👶',t:'MRP',x:'LCZ 5 mg: ₹3.23/Tablet'}],
+     ind:['Watery Eyes','Sneezing','Runny Nose','Skin Allergy','Allergic Rhinitis','Anaphylaxis'],
+     tag:'LCZ means Levocetirizine'},
+    {name:'LCZ-Mont',form:'Bilayered Tablet',badge:'Allergy + Asthma',comp:'Levocetirizine 5mg + Montelukast 10mg',color:'#1565C0',
+     hook:'Anti-allergy and asthma controller in one bilayered tablet.',
+     kps:[{i:'🔵',t:'Bilayered design',x:'Two medicines in two separate layers — no drug interaction'},
+          {i:'💰',t:'Price',x:'Only ₹4.35 per tablet'},
+          {i:'🫁',t:'Best for',x:'Rhinitis with asthma, chronic urticaria, perennial allergic conditions'}],
+     ind:['Rhinitis with Asthma','Seasonal Allergic Rhinitis','Chronic Urticaria'],
+     tag:'Maximum Relief at Unbeatable Price'},
+    {name:'LCZ Plus',form:'Tablet',badge:'Cold & Fever',comp:'CPM 2mg + Phenylephrine 10mg + Paracetamol 500mg',color:'#2E7D32',
+     hook:'3-in-1 tablet for cold, blocked nose and fever.',
+     kps:[{i:'🛡️',t:'CPM',x:'Anti-allergic — stops sneezing and runny nose'},
+          {i:'👃',t:'Phenylephrine',x:'Nasal decongestant — opens a blocked nose'},
+          {i:'🌡️',t:'Paracetamol 500mg',x:'Full dose — controls fever and body ache'}],
+     ind:['Blocked Nose','Runny Nose','Fever & Body Ache','Sinusitis'],
+     tag:'A Reliable Formula for Rapid Relief'},
+    {name:'LCZ-XP Expectorant',form:'Syrup',badge:'Cough Syrup',comp:'Ambroxol 15mg + Guaiphenesin 50mg + Levocetirizine 2.5mg + Menthol 1mg / 5ml',color:'#C62828',
+     hook:'Treats allergic cough with mucus — and does NOT cause drowsiness.',
+     kps:[{i:'🍒',t:'Cherry flavour',x:'Pleasant taste for better compliance'},
+          {i:'💧',t:'Ambroxol',x:'Mucolytic — thins and breaks down thick mucus'},
+          {i:'🫁',t:'Guaiphenesin',x:'Expectorant — helps expel mucus from the lungs'},
+          {i:'😴',t:'No drowsiness',x:'Patient stays fully alert and active'}],
+     ind:['Allergic Cough','Productive Cough with Mucus'],
+     tag:'No Sedation, Only Expectoration'}],
+   quiz:[
+    {q:'LCZ means?',o:['Levo Citrate Zine','Levo Cetiri Zine','Levo Clarithro Zine','Levo Cyto Zine'],a:1,exp:'LCZ = Levo Cetiri Zine, which is Levocetirizine — an anti-allergy medicine.'},
+    {q:'What type of tablet is LCZ-Mont?',o:['Effervescent','Controlled release','Bilayered','Chewable'],a:2,exp:'LCZ-Mont is a Bilayered Tablet — two medicines kept in separate layers to prevent interaction.'},
+    {q:'What is the Strength of Montelukast in LCZ-Mont?',o:['5mg','10mg','15mg','20mg'],a:1,exp:'LCZ-Mont contains Levocetirizine 5mg + Montelukast 10mg.'},
+    {q:'Which ingredient in LCZ-XP breaks down thick mucus?',o:['Guaiphenesin','Ambroxol','Bromhexine','Acetylcysteine'],a:1,exp:'Ambroxol makes thick mucus thinner so it comes out easily.'},
+    {q:'Which ingredient in LCZ Plus opens a blocked nose?',o:['CPM','Paracetamol','Phenylephrine','Levocetirizine'],a:2,exp:'Phenylephrine helps open a blocked nose for easier breathing.'},
+    {q:'What is the price of LCZ-Mont per tablet?',o:['₹2.50','₹3.90','₹4.35','₹5.00'],a:2,exp:'LCZ-Mont is priced at ₹4.35 per tablet.'},
+    {q:'What flavour does LCZ-XP syrup come in?',o:['Strawberry','Mango','Cherry','Lemon'],a:2,exp:'LCZ-XP comes in Cherry flavour for better patient compliance.'},
+    {q:'Does LCZ-XP cause drowsiness?',o:['Yes, strong drowsiness','No — zero drowsiness','Only at night','Only in children'],a:1,exp:'LCZ-XP causes no drowsiness — the patient stays fully alert.'},
+    {q:'What does Guaiphenesin do in LCZ-XP?',o:['Stops allergy','Breaks down mucus','Expels mucus from the lungs','Reduces fever'],a:2,exp:'Guaiphenesin helps remove mucus from the chest.'},
+    {q:'Why is LCZ-Mont bilayered?',o:['For better taste','To keep acidic LCZ and alkaline Montelukast separate — no drug interaction','To reduce cost','For faster dissolution only'],a:1,exp:'The bilayer keeps Levocetirizine (acidic) and Montelukast (alkaline) apart — enhanced stability and no drug interaction.'}]},
+{id:'raptac',name:'Raptac Series',subtitle:'Acid Control',icon:'🔴',color:'#C62828',light:'#FFEBEE',section:'Physician & Ortho',
+   desc:'Controls stomach acid — relieves acidity, GERD and nausea',
+   products:[
+    {name:'Raptac-D',form:'Capsule',badge:'PPI + Prokinetic',comp:'Rabeprazole 20mg + Domperidone 10mg (IR) + 20mg (SR)',color:'#C62828',
+     hook:'3 medicines in 1 capsule — blocks acid, stops nausea and vomiting.',
+     kps:[{i:'💊',t:'What it contains',x:'Rabeprazole (acid blocker) + Domperidone (stops nausea and vomiting)'},
+          {i:'💰',t:'Price',x:'Only ₹3.90 per capsule — most affordable PPI + Prokinetic in India'},
+          {i:'⏰',t:'Duration',x:'Controls acid for 24 hours — one capsule per day'}],
+     ind:['Peptic Ulcer','Gastritis','Drug-Induced Gastritis','Esophagitis','Gastroparesis'],
+     tag:'Rapid, Total Acid Control'},
+    {name:'Raptac-20',form:'Tablet',badge:'PPI',comp:'Rabeprazole Sodium 20mg',color:'#B71C1C',
+     hook:'Simple, affordable acid blocker for long-term use.',
+     kps:[{i:'⚡',t:'Action',x:'Symptom relief starts within 1 day'},
+          {i:'💰',t:'Price',x:'Only ₹2.50 per tablet — most affordable PPI in India'},
+          {i:'🔧',t:'Healing',x:'Repairs the stomach lining — more than 95% healing in 4 to 8 weeks'},
+          {i:'🛡️',t:'Safety',x:'High safety profile — suitable for long-term use'}],
+     ind:['Peptic Ulcer','Gastritis','Long-Term GERD','Esophagitis'],
+     tag:'Rapid, Total Acid Control'}],
+   quiz:[
+    {q:'Raptac-D contains which acid blocker?',o:['Omeprazole','Pantoprazole','Rabeprazole','Lansoprazole'],a:2,exp:'Raptac-D contains Rabeprazole reduces extra acid production in the stomach and gives relief from acidity.'},
+    {q:'What is the price of Raptac-D per capsule?',o:['₹2.50','₹3.90','₹5.00','₹10.00'],a:1,exp:'Raptac-D is the most affordable PPI+Prokinetic at ₹3.90 per capsule.'},
+    {q:'What does Domperidone do in Raptac-D?',o:['Kills bacteria','Stops nausea and vomiting','Reduces fever','Controls allergy'],a:1,exp:'Domperidone helps reduce nausea and improves stomach movement.'},
+    {q:'Raptac-20 provides symptom relief in how many days?',o:['1 hour','1 day','1 week','1 month'],a:1,exp:'Raptac-20 starts controlling symptoms within 1 day.'},
+    {q:'Raptac-20 achieves more than 95% healing in how many weeks?',o:['1–2 weeks','2–4 weeks','4–8 weeks','12 weeks'],a:2,exp:'Raptac-20 achieves more than 95% healing in 4 to 8 weeks.'},
+    {q:'Raptac-D uses which special technology?',o:['Nano Particle','Advanced Pellet Technology','Bilayered','AECP'],a:1,exp:'Advanced Pellet Technology keeps all 3 ingredients separate in one capsule for maximum effect.'},
+    {q:'Raptac-D is NOT used for which condition?',o:['Peptic Ulcer','Gastritis','Arthritis (joint pain)','GERD'],a:2,exp:'Arthritis is a joint condition. Raptac-D treats stomach and acid problems only.'},
+    {q:'What is the price of Raptac-20 per tablet?',o:['₹2.50','₹3.90','₹4.00','₹5.50'],a:0,exp:'Raptac-20 is the most affordable PPI — only ₹2.50 per tablet.'},
+    {q:'How many hours does Raptac-D control acid?',o:['6 hours','12 hours','24 hours','48 hours'],a:2,exp:'Raptac-D controls acid for 24 hours — one capsule, all-day relief.'},
+    {q:'Raptac-20 is best for which type of use?',o:['Short 3-day use','Long-term GERD maintenance','Children only','Emergency only'],a:1,exp:'Raptac-20 is designed for long-term therapy and maintenance of GERD.'}]},
+  {id:'lcfex',name:'LCFEX Series',subtitle:'Advanced Allergy',icon:'🌀',color:'#283593',light:'#E8EAF6',section:'Physician & Ortho',
+   desc:'Non-drowsy antihistamine — 24-hour relief, EAACI recommended',
+   products:[
+    {name:'LCFEX-120 / LCFEX-180',form:'Tablet',badge:'Non-Sedating Antihistamine',comp:'Fexofenadine 120mg or 180mg',color:'#283593',
+     hook:'24-hour non-drowsy antihistamine — zero sedation.',
+     kps:[{i:'🕐',t:'24-hour relief',x:'One tablet covers the full day'},
+          {i:'🧠',t:'No drowsiness',x:'Works without causing much sleepiness in most patients'},
+          {i:'💧',t:'95% dissolution',x:'High dissolution rate — excellent absorption'},
+          {i:'🏆',t:'EAACI recommended',x:'Recommended by the European Academy of Allergy and Clinical Immunology'}],
+     ind:['Rhinitis with Asthma','Chronic Idiopathic Urticaria','Dermatitis','Acute Pharyngitis','Bronchitis'],
+     tag:'24-Hour Relief, Zero Drowsiness'},
+    {name:'LCFEX-Mont',form:'Tablet',badge:'Allergy + Asthma',comp:'Fexofenadine 120mg + Montelukast 10mg',color:'#1565C0',
+     hook:'Adds asthma control to the non-drowsy Fexofenadine.',
+     kps:[{i:'🔥',t:'Fexofenadine',x:'Powerful antihistamine — no drowsiness, no impairment'},
+          {i:'🫁',t:'Montelukast',x:'Helps control allergy symptoms and supports breathing in asthma patients'},
+          {i:'🕐',t:'Once daily',x:'One tablet per day — easy compliance'}],
+     ind:['Allergic Rhinitis with Asthma','Chronic Urticaria','Dermatitis'],
+     tag:'Double Action Allergy Control'}],
+   quiz:[
+    {q:'LCFEX contains which antihistamine?',o:['Levocetirizine','Fexofenadine','Cetirizine','Loratadine'],a:1,exp:'LCFEX contains Fexofenadine, a non-drowsy anti-allergy medicine.'},
+    {q:'Does LCFEX cause drowsiness?',o:['Yes, strong drowsiness','No, zero drowsiness','Only at night','Only in elderly'],a:1,exp:'LCFEX causes no drowsiness — it does not cross the blood-brain barrier.'},
+    {q:'What is the dissolution rate of LCFEX?',o:['50%','75%','85%','95%'],a:3,exp:'LCFEX has 95% dissolution rate — very high bioavailability.'},
+    {q:'Which body recommends Fexofenadine?',o:['WHO','EAACI','FDA','ICMR'],a:1,exp:'Fexofenadine is widely used for allergy relief because it causes less drowsiness.'},
+    {q:'LCFEX-Mont combines Fexofenadine with which medicine?',o:['Ambroxol','Salbutamol','Montelukast','Dexamethasone'],a:2,exp:'LCFEX-Mont = Fexofenadine 120mg + Montelukast 10mg.'},
+    {q:'How many hours of relief does LCFEX provide?',o:['6 hours','12 hours','18 hours','24 hours'],a:3,exp:'LCFEX provides 24 hours of relief with one daily dose.'},
+    {q:'Why does LCFEX not cause drowsiness?',o:['Small dose','Does not cross the blood-brain barrier','Very thin molecule','No active ingredient'],a:1,exp:'Fexofenadine does not cross the blood-brain barrier — so no sedation occurs.'},
+    {q:'LCFEX is which generation antihistamine?',o:['First','Second','Third','Fourth'],a:1,exp:'LCFEX (Fexofenadine) is a 2nd generation antihistamine.'},
+    {q:'How much Fexofenadine is in LCFEX-120?',o:['60mg','90mg','120mg','180mg'],a:2,exp:'LCFEX-120 contains Fexofenadine 120mg.'},
+    {q:'Is LCFEX used for Chronic Idiopathic Urticaria?',o:['Yes','No, only for the nose','Only in children','Only in elderly'],a:0,exp:'Yes — LCFEX is used for Chronic Idiopathic Urticaria (long-lasting unexplained hives).'}]},
+  {id:'medigas',name:'Medigas Series',subtitle:'Digestive Health',icon:'🟢',color:'#1B5E20',light:'#E8F5E9',section:'Physician & Ortho',
+   desc:'Gas and digestion problems — USFDA approved, safe for all',
+   products:[
+    {name:'Medigas',form:'Soft Gel Capsule',badge:'Gas Relief',comp:'Simethicone 140mg',color:'#1B5E20',
+     hook:'Relieves gas, bloating and flatulence — completely safe.',
+     kps:[{i:'📊',t:'Market need',x:'76% of Indians suffer from gas problems'},
+          {i:'✅',t:'USFDA Approved',x:'Approved by the US drug authority — international quality'},
+          {i:'🛡️',t:'Completely safe',x:'Not absorbed into the blood — works only in the stomach, 100% safe'},
+          {i:'🌿',t:'Saunf flavour, Sugar Free',x:'Safe for diabetic patients too'}],
+     ind:['Indigestion','Drug-Induced Gas','Functional Dyspepsia','SIBO'],
+     tag:'A Complete Medicine for Gas'},
+    {name:'Medigas-Ez',form:'Tablet',badge:'Triple Action',comp:'Pancreatin 170mg + Dimethicone 80mg + Fructooligosaccharides (FOS) 100mg',color:'#2E7D32',
+     hook:'Triple action digestive tablet — first of its kind in India.',
+     kps:[{i:'3️⃣',t:'Triple action',x:'3 medicines in one: digestion + gas relief + gut health'},
+          {i:'🍽️',t:'Pancreatin',x:'Digestive enzyme — helps the body digest food properly'},
+          {i:'💨',t:'Dimethicone',x:'Removes gas — reduces bloating'},
+          {i:'🦠',t:'FOS (Prebiotic)',x:'Feeds good bacteria in the gut — improves gut health'}],
+     ind:['Indigestion','Dyspepsia','Post-Meal Fullness','Post-Diarrhoea','IBS'],
+     tag:"Don't Fight with Diet, Digest every Bite"}],
+   quiz:[
+    {q:'What percentage of Indians suffer from gas problems?',o:['50%','60%','76%','90%'],a:2,exp:'76% of Indians suffer from gas-related problems.'},
+    {q:'What is the active ingredient in Medigas?',o:['Domperidone','Simethicone','Pancreatin','Diastase'],a:1,exp:'Medigas contains Simethicone 140mg — it helps release trapped gas.'},
+    {q:'Why is Medigas considered completely safe?',o:['Absorbs quickly','Not absorbed into blood — works only in the stomach','Absorbs slowly','Goes to the liver'],a:1,exp:'Simethicone works only inside the stomach to break gas bubbles and give relief from bloating.'},
+    {q:'How many components does Medigas-Ez contain?',o:['1','2','3','4'],a:2,exp:'Medigas-Ez has 3 components: Pancreatin + Dimethicone + FOS — Triple Action.'},
+    {q:'What does FOS do in Medigas-Ez?',o:['Kills bacteria','Feeds good gut bacteria','Reduces fever','Controls blood sugar'],a:1,exp:'FOS is a prebiotic — it feeds and grows good bacteria in the gut.'},
+    {q:'What flavour does Medigas come in?',o:['Mango','Strawberry','Saunf (Fennel)','Lemon'],a:2,exp:'Medigas comes in Saunf (Fennel) flavour.'},
+    {q:'What does Pancreatin do in Medigas-Ez?',o:['Removes gas','Helps digest food','Kills harmful bacteria','Relieves pain'],a:1,exp:'Pancreatin is a digestive enzyme that helps the body properly digest food.'},
+    {q:'Which agency has approved Medigas?',o:['WHO','ICMR','USFDA','FSSAI'],a:2,exp:'Medigas is USFDA approved — meeting international quality standards.'},
+    {q:'What does Dimethicone do in Medigas-Ez?',o:['Improves digestion','Grows good bacteria','Removes gas','Reduces inflammation'],a:2,exp:'Dimethicone removes gas — reduces bloating and flatulence.'},
+    {q:'Is Medigas-Ez first of its kind in India?',o:['Yes, a unique innovation','No, it is very old','Available since 2000','Imported from USA'],a:0,exp:'Yes — Medigas-Ez Triple Action formula is first of its kind in India.'}]},
+  {id:'mecobal',name:'Mecobal Series',subtitle:'Nerve & Vitamin B12',icon:'🟡',color:'#BF360C',light:'#FBE9E7',section:'Physician & Ortho',
+   desc:'Vitamin B12 for nerve repair — sublingual route works like an injection',
+   products:[
+    {name:'Mecobal-OD',form:'Sublingual Tablet',badge:'Sublingual B12',comp:'Mecobalamin 1500 mcg',color:'#BF360C',
+     hook:'Dissolves under the tongue — absorbs directly into blood like an injection.',
+     kps:[{i:'👅',t:'Sublingual route',x:'Placed under the tongue — absorbs directly into the bloodstream'},
+          {i:'💉',t:'Injitab',x:'As effective as an injectable B12 — no injection needed'},
+          {i:'✅',t:'Full dose',x:'1500 mcg — full therapeutic dose in one small tablet'},
+          {i:'🍓',t:'Strawberry flavour',x:'Good taste — patients take it willingly'}],
+     ind:['Vitamin B12 Deficiency','Diabetic Neuropathy','Peripheral Neuropathy','Long-Term PPI or Metformin Use','General Weakness','Sciatica'],
+     tag:'The True Neuron Rejuvenator Injitab'},
+    {name:'Mecobal-Plus',form:'Capsule',badge:'Advanced Nerve Care',comp:'Mecobalamin 1500mcg + Alpha Lipoic Acid 100mg + Folic Acid 1.5mg + Vitamin B6 3mg',color:'#E65100',
+     hook:'4 ingredients that work together to repair damaged nerves.',
+     kps:[{i:'4️⃣',t:'4 ingredients',x:'B12 + Alpha Lipoic Acid + Folic Acid (B9) + Vitamin B6'},
+          {i:'🧪',t:'Alpha Lipoic Acid',x:'Helps protect nerves from damage'},
+          {i:'📉',t:'Reduces Homocysteine',x:'Lowers harmful Homocysteine levels by 25%'},
+          {i:'📈',t:'Pain improvement',x:'Improves pain score (VAS) by 36.8% — clinically proven'}],
+     ind:['Hyperhomocysteinemia','Peripheral Neuropathy','Diabetic Neuropathy'],
+     tag:'A Complete Therapy for Nerve Regeneration'}],
+   quiz:[
+    {q:'How is Mecobal-OD taken?',o:['Swallowed with water','Dissolved under the tongue (sublingual)','Injected','Applied on skin'],a:1,exp:'Mecobal-OD is sublingual — placed under the tongue, it absorbs directly into the blood.'},
+    {q:'How much Mecobalamin is in Mecobal-OD?',o:['500 mcg','750 mcg','1000 mcg','1500 mcg'],a:3,exp:'Mecobal-OD contains the full therapeutic dose — 1500 mcg.'},
+    {q:'By how much does Mecobal-Plus improve pain score?',o:['10%','20%','36.8%','50%'],a:2,exp:'Mecobal-Plus improves the VAS pain score by 36.8% — clinically proven.'},
+    {q:'What is Alpha Lipoic Acid in Mecobal-Plus?',o:['A vitamin','An antibiotic','A powerful antioxidant','Only a pain reliever'],a:2,exp:'ALA is a powerful antioxidant that works in both water and fat (dual phase solubility).'},
+    {q:'Why is Mecobal-OD given to long-term PPI users?',o:['PPIs damage the liver','Long-term PPIs reduce Vitamin B12 absorption','PPIs cause kidney stones','PPIs cause allergy'],a:1,exp:'Long-term PPI use reduces Vitamin B12 absorption, causing deficiency. Mecobal-OD corrects this.'},
+    {q:'What flavour does Mecobal-OD come in?',o:['Mango','Lemon','Strawberry','Cherry'],a:2,exp:'Mecobal-OD comes in Strawberry flavour for better patient compliance.'},
+    {q:'By how much does Mecobal-Plus reduce Homocysteine?',o:['10%','15%','20%','25%'],a:3,exp:'Mecobal-Plus reduces Homocysteine levels by 25%.'},
+    {q:'Mecobalamin is the active form of which vitamin?',o:['Vitamin A','Vitamin C','Vitamin B12','Vitamin D'],a:2,exp:'Mecobalamin is a form of Vitamin B12 that supports healthy nerves.'},
+    {q:'Why is Mecobal-OD used in diabetic patients?',o:['Controls blood sugar','Treats nerve pain and damage (neuropathy)','Treats skin infections','Reduces weight'],a:1,exp:'Diabetic patients often develop neuropathy — nerve pain and numbness. Mecobal-OD treats nerve damage.'},
+    {q:'How many vital ingredients does Mecobal-Plus have?',o:['2','3','4','5'],a:2,exp:'Mecobal-Plus has 4 ingredients: B12 + Alpha Lipoic Acid + Folic Acid (B9) + Vitamin B6.'}]},
+  {id:'calex',name:'Calex & Rap-60k',subtitle:'Bone & Vitamin D',icon:'🔵',color:'#0D47A1',light:'#E3F2FD',section:'Physician & Ortho',
+   desc:'Calcium and Vitamin D — highest absorption formula for strong bones',
+   products:[
+    {name:'Calex Total',form:'Tablet',badge:'7-in-1 Bone Formula',comp:'Calcium Citrate Malate + Magnesium + Zinc + Vit D3 2000IU + Methylcobalamin + L-Methyl Folate + Pyridoxal-5-phosphate',color:'#0D47A1',
+     hook:'7 nutrients in one tablet — the most complete bone supplement at ₹11.90.',
+     kps:[{i:'7️⃣',t:'7 ingredients',x:'Complete nutritional support — only ₹11.90 per tablet'},
+          {i:'✅',t:'Best calcium form',x:'Calcium Citrate Malate absorbs at 45% vs Calcium Carbonate only 15%'},
+          {i:'☀️',t:'Vitamin D3 2000IU',x:'Helps the body absorb calcium — essential for bone strength'},
+          {i:'💪',t:'Zinc',x:'Supports immunity and wound healing'}],
+     ind:['Calcium Deficiency','Osteopenia','Osteoporosis','Vitamin B12 Deficiency'],
+     tag:'The 7-in-1 Total Recovery Formula'},
+    {name:'Calex-D3',form:'Tablet',badge:'Calcium + Vitamin D3',comp:'Calcium Citrate Malate 1170mg + Vitamin D3 1000IU',color:'#1565C0',
+     hook:"India's smallest calcium tablet — highest absorption, no kidney stone risk.",
+     kps:[{i:'📏',t:'Smallest tablet',x:"India's smallest calcium tablet — easy to swallow"},
+          {i:'☀️',t:'Vitamin D3 1000IU',x:'Full daily requirement of Vitamin D3'},
+          {i:'✅',t:'High absorption',x:'Absorbs without food — acid independent'},
+          {i:'🪨',t:'No kidney stone risk',x:'Calcium Citrate Malate does not form kidney stones'}],
+     ind:['Pregnancy & Lactation','Post-Menopausal Osteoporosis','Calcium Deficiency'],
+     tag:'The Complete Calcium Supplement'},
+    {name:'Rap-60k',form:'Nano Shot / Softules',badge:'Vitamin D3 — 60,000 IU',comp:'Vitamin D3 60,000 IU/5ml Nano Shot | Vitamin D3 60,000 IU Softules',color:'#E65100',
+     hook:'Corrects Vitamin D deficiency quickly using ultra fine nano particle technology.',
+     kps:[{i:'⚡',t:'Ultra Fine Nano Particle',x:'Superior absorption compared to regular tablets'},
+          {i:'🍹',t:'Litchi flavour, Sugar Free',x:'Safe for diabetic patients'},
+          {i:'💊',t:'Softules: 80–85% absorption',x:'Highest absorption form of Vitamin D3'},
+          {i:'💰',t:'Price',x:'Nano Shot ₹48 per bottle | Softule ₹24 per piece'}],
+     ind:['Vitamin D Deficiency','Low Back Pain','Osteoporosis','Arthritis','Musculoskeletal Pain'],
+     tag:'Affordable Excellence'}],
+   quiz:[
+    {q:'How many ingredients does Calex Total contain?',o:['5','6','7','8'],a:2,exp:'Calex Total contains 7 ingredients.'},
+    {q:'Which calcium form has the highest absorption?',o:['Calcium Carbonate (15%)','Calcium Citrate (24%)','Calcium Citrate Malate (45%)','Calcium Phosphate'],a:2,exp:'Calcium Citrate Malate absorbs at 45% — the highest.'},
+    {q:'Which technology does Rap-60k use?',o:['Bilayered','AECP','Ultra Fine Nano Particle Technology','Pellet'],a:2,exp:'Rap-60k uses Ultra Fine Nano Particle Technology for superior absorption.'},
+    {q:'What flavour does Rap-60k come in?',o:['Strawberry','Mango','Cherry','Litchi'],a:3,exp:'Rap-60k comes in Litchi flavour — Sugar Free and Diabetic Friendly.'},
+    {q:'What is the absorption rate of Rap-60k Softules?',o:['50–70%','70–80%','80–85%','90–95%'],a:2,exp:'Rap-60k Softules have 80–85% absorption — the highest for Vitamin D3.'},
+    {q:'What is the price of Calex Total per tablet?',o:['₹5','₹8','₹11.90','₹15'],a:2,exp:'Calex Total provides 7 ingredients for only ₹11.90 per tablet.'},
+    {q:'What is the absorption rate of Calcium Carbonate?',o:['10%','15%','24%','45%'],a:1,exp:'Calcium Carbonate absorbs at only 15% vs Calcium Citrate Malate at 45%.'},
+    {q:'What is special about Calex-D3?',o:['Largest calcium tablet','Smallest calcium tablet in India','Most expensive','Most common'],a:1,exp:"Calex-D3 is India's smallest calcium tablet — easy to swallow."},
+    {q:'What does Zinc do in Calex Total?',o:['Only nerve repair','Boosts immunity and wound healing','Controls acid','Controls allergy'],a:1,exp:'Zinc supports immunity and wound healing.'},
+    {q:'Is Rap-60k safe for diabetic patients?',o:['Yes — Sugar Free and Diabetic Friendly','No — contains sugar','Only for Type 2','Not recommended'],a:0,exp:'Yes — Rap-60k is Sugar Free and safe for all diabetic patients.'}]},
+  {id:'candirap',name:'Candirap Series',subtitle:'Antifungal — Itraconazole',icon:'🩷',color:'#880E4F',light:'#FCE4EC',section:'Physician & Ortho',
+   desc:'Oral Itraconazole — treats skin and nail fungal infections',
+   products:[
+    {name:'Candirap 100 / 200',form:'Capsule',badge:'Oral Antifungal',comp:'Itraconazole 100mg or 200mg',color:'#880E4F',
+     hook:'Treats fungal infections with quality matching the original brand.',
+     kps:[{i:'🏆',t:'Quality',x:'At par with the original brand — same quality, better price'},
+          {i:'🔴',t:'Small pellet size',x:'Smaller pellets = more surface area = faster dissolution and absorption'},
+          {i:'📈',t:'High absorption',x:'Maximum effect guaranteed'}],
+     ind:['Tinea Cruris','Tinea Versicolor','Tinea Corporis','Onychomycosis (Nail Fungus)'],
+     tag:'Wrap the Fungal Infection with Candirap'},
+    {name:'Candirap-TF',form:'Tablet',badge:'Dual Antifungal',comp:'Itraconazole 100mg + Terbinafine 250mg',color:'#C62828',
+     hook:'Two antifungals in one tablet for higher cure rates in stubborn infections.',
+     kps:[{i:'2️⃣',t:'Dual action',x:'Two antifungals — double the power'},
+          {i:'⏹️',t:'Itraconazole',x:'Fungistatic — stops the fungus from growing'},
+          {i:'💥',t:'Terbinafine',x:'Fungicidal — kills the fungus directly'},
+          {i:'📈',t:'Higher cure rates',x:'Combination = higher cure rates, less recurrence'}],
+     ind:['Tinea Corporis','Tinea Capitis','Tinea Pedis','Tinea Cruris','Onychomycosis','Sporotrichosis'],
+     tag:'Reliable for Recurrent Fungal Infection'}],
+   quiz:[
+    {q:'Which antifungal is in Candirap 100/200?',o:['Fluconazole','Itraconazole','Terbinafine','Luliconazole'],a:1,exp:'Candirap contains Itraconazole 100mg or 200mg.'},
+    {q:'What type of formula does Candirap-TF use?',o:['Single action','Dual action','Triple action','Quadruple action'],a:1,exp:'Candirap-TF is a Dual Action Formula: Itraconazole (Fungistatic) + Terbinafine (Fungicidal).'},
+    {q:'What is the action of Terbinafine in Candirap-TF?',o:['Fungistatic (stops growth)','Bactericidal','Fungicidal (kills fungus)','Antiviral'],a:2,exp:'Terbinafine is fungicidal — it directly kills the fungus.'},
+    {q:'What is the action of Itraconazole in Candirap-TF?',o:['Fungistatic (stops growth)','Bactericidal','Fungicidal (kills)','Antiviral'],a:0,exp:'Itraconazole is fungistatic — it stops the fungus from growing.'},
+    {q:'What does Onychomycosis mean?',o:['Skin rash','Fungal infection of the nails','Eye infection','Ear infection'],a:1,exp:'Onychomycosis = fungal infection of the nails.'},
+    {q:'How does Candirap compare to the original brand?',o:['Better than original','At par with (equal to) the original','Cheaper but weaker','No comparison'],a:1,exp:'Candirap claims quality at par with the original brand.'},
+    {q:'Why is the pellet size small in Candirap capsules?',o:['Better taste','Faster dissolution and higher absorption','To reduce cost','For packaging'],a:1,exp:'Small pellet size = greater surface area = faster dissolution = higher absorption.'},
+    {q:'Does Candirap-TF treat Sporotrichosis?',o:['Yes','No','Only Candirap 200mg','Neither'],a:0,exp:'Yes — Candirap-TF is used for Sporotrichosis.'},
+    {q:'Tinea Cruris is a fungal infection of which area?',o:['Scalp','Nails','Groin area','Foot'],a:2,exp:'Tinea Cruris is a fungal infection of the groin area.'},
+    {q:'Why is combination therapy better for recurrent infections?',o:['It is cheaper','Double action — stops growth and kills fungus = higher cure rates','Fewer side effects','Works only for nails'],a:1,exp:'Itraconazole + Terbinafine together give dual action for higher cure rates and less recurrence.'}]},
+  {id:'odicon',name:'Odicon Series',subtitle:'Antifungal — Fluconazole',icon:'🟤',color:'#B71C1C',light:'#FFEBEE',section:'Derma & Gynae',
+   desc:'Fluconazole — for vaginal, skin and systemic fungal infections',
+   products:[
+    {name:'Odicon-150 / Odicon-200',form:'Tablet',badge:'Oral Antifungal',comp:'Fluconazole 150mg or 200mg',color:'#B71C1C',
+     hook:'One dose of Odicon-150 works for up to 4 days.',
+     kps:[{i:'📈',t:'Bioavailability',x:'More than 90% — excellent absorption'},
+          {i:'🕐',t:'Long acting',x:'One dose remains effective for up to 96 hours (4 days)'},
+          {i:'🦠',t:'Candida coverage',x:'Inhibits 90% of Candida species'},
+          {i:'🎯',t:'Odicon-200',x:'For oral candidiasis, cryptococcal meningitis and systemic infections'}],
+     ind:['Vaginal Yeast Infection (VVC)','Candidal Balanitis','Recurrent Vaginal Candidiasis','Oral Candidiasis'],
+     tag:'Wipes off the Fungus'},
+    {name:'Odicon-400',form:'Tablet',badge:'High Dose Antifungal',comp:'Fluconazole 400mg',color:'#C62828',
+     hook:'Once-weekly high-dose treatment for serious or extensive fungal infections.',
+     kps:[{i:'💪',t:'High dose',x:'For serious and extensive fungal infections'},
+          {i:'📅',t:'Once weekly',x:'Taken only once a week — very convenient'},
+          {i:'🎯',t:'Selective',x:'Targets fungal enzymes, not human enzymes — fewer side effects'}],
+     ind:['Extensive Dermatophytosis','Persistent Onychomycosis','Pityriasis Versicolor'],
+     tag:'Once Weekly — Wipes off the Fungus'}],
+   quiz:[
+    {q:'Which antifungal is in the Odicon series?',o:['Itraconazole','Terbinafine','Fluconazole','Ketoconazole'],a:2,exp:'Odicon contains Fluconazole — 150mg, 200mg and 400mg.'},
+    {q:'Odicon-150 inhibits how many percent of Candida species?',o:['70%','80%','90%','100%'],a:2,exp:'Odicon-150 inhibits 90% of Candida species.'},
+    {q:'How long does one dose of Odicon-150 remain effective?',o:['24 hours','48 hours','72 hours','96 hours'],a:3,exp:'One dose of Odicon-150 remains effective for up to 96 hours — 4 days.'},
+    {q:'What is the bioavailability of Odicon?',o:['More than 70%','More than 80%','More than 90%','More than 95%'],a:2,exp:'Odicon has more than 90% bioavailability.'},
+    {q:'How often is Odicon-400 taken?',o:['Daily','Twice daily','Once weekly','Once monthly'],a:2,exp:'Odicon-400 is taken once weekly — very convenient.'},
+    {q:'Odicon-400 is used for which infections?',o:['Mild infections only','Common cold','Serious and systemic fungal infections','Bacterial infections'],a:2,exp:'Odicon-400 is for serious, stubborn and systemic fungal infections.'},
+    {q:'VVC stands for?',o:['Vaginal Viral Condition','Vulvovaginal Candidiasis','Vaginal Vascular Calcification','None of these'],a:1,exp:'VVC = Vulvovaginal Candidiasis — vaginal yeast infection.'},
+    {q:'Odicon-200 is used for?',o:['Only skin rash','Oral/Esophageal Candidiasis and Systemic Infections','Only nail fungus','Only UTI'],a:1,exp:'Odicon-200 is used for Oral/Esophageal Candidiasis and Systemic Infections.'},
+    {q:'Is Odicon-150 used for Recurrent Vaginal Candidiasis?',o:['Yes','No','Single use only','Only post-menopausal'],a:0,exp:'Yes — Odicon-150 is indicated for Recurrent Vaginal Candidiasis.'},
+    {q:'Why does Odicon-400 cause fewer side effects?',o:['It kills bacteria too','Targets fungal enzymes, not human ones','It is less effective','Requires liver tests'],a:1,exp:'Fluconazole is selective for fungal enzymes over human enzymes — fewer side effects.'}]},
+  {id:'skincare',name:'Anti-Fungal Range',subtitle:'Clorap-S & L-Rap',icon:'🩵',color:'#00695C',light:'#E0F2F1',section:'Derma & Gynae',
+   desc:'Topical treatment for psoriasis, eczema and skin fungal infections',
+   products:[
+    {name:'Clorap-S Lotion (3.5% / 6%)',form:'Lotion',badge:'Psoriasis & Eczema',comp:'Clobetasol Propionate 0.05% + Salicylic Acid 3.5% or 6% w/v',color:'#00695C',
+     hook:'Reduces inflammation and removes dead skin — for psoriasis and eczema.',
+     kps:[{i:'🔬',t:'Salicylic Acid',x:'Keratolytic — removes dead and hardened skin so medicine reaches deeper'},
+          {i:'💊',t:'Clobetasol',x:'Steroid — reduces inflammation, redness and itching'},
+          {i:'✅',t:'Non-greasy',x:'Light, comfortable — suitable for hair-bearing areas like scalp'}],
+     ind:['Resistant Psoriasis','Dry Scaly Dermatoses','Eczema','Lichen Simplex','Lichen Planus'],
+     tag:'Deeper Penetration for Rapid Solution'},
+    {name:'Clorap-S Ointment (3% / 6%)',form:'Ointment',badge:'Deep Hydration',comp:'Clobetasol Propionate 0.05% + Salicylic Acid 3% or 6% w/w',color:'#004D40',
+     hook:'Deeply hydrates and locks in moisture for dry, scaly skin.',
+     kps:[{i:'💧',t:'Deep hydration',x:'Moisturises deep into the skin — ideal for very dry, scaly conditions'},
+          {i:'🔒',t:'Moisture retention',x:'Locks in moisture — prevents skin from drying out again'},
+          {i:'🎯',t:'Best for',x:'Thick, non-hairy skin areas'}],
+     ind:['Resistant Psoriasis','Dry Scaly Dermatoses','Eczema','Lichen Simplex','Lichen Planus'],
+     tag:'Retain Moisture, Heal Skin'},
+    {name:'L-Rap Lotion / Cream',form:'Lotion & Cream',badge:'Topical Antifungal',comp:'Luliconazole 1% w/w',color:'#00838F',
+     hook:'Up to 99% cure rate — applied just once daily.',
+     kps:[{i:'🏃',t:'Rapid action',x:'Acts faster than most other topical antifungals'},
+          {i:'💪',t:'Fungicidal',x:'Directly kills the fungus'},
+          {i:'📈',t:'99% cure rate',x:'Very high cure rate in clinical studies'},
+          {i:'🕐',t:'Once daily (OD)',x:'Applied only once a day — convenient for patients'},
+          {i:'💇',t:'Lotion',x:'For hairy and large areas'},
+          {i:'🦵',t:'Cream',x:'For thick skin areas and skin folds'}],
+     ind:['Cutaneous Candidiasis','Pityriasis Versicolor','Tinea Cruris','Tinea Corporis','Tinea Pedis'],
+     tag:'Quick Wrap for Fungal Infections'}],
+   quiz:[
+    {q:'Clorap-S is used for which skin condition?',o:['Acne (pimples)','Psoriasis and eczema','Nail fungal infection','Only dandruff'],a:1,exp:'Clorap-S is used for Psoriasis, Eczema, Lichen Simplex, Lichen Planus and Dry Scaly Dermatoses.'},
+    {q:'What does Salicylic Acid do in Clorap-S?',o:['Antifungal','Keratolytic — removes dead and hardened skin','Antibiotic','Antihistamine'],a:1,exp:'Salicylic Acid is a keratolytic — it removes dead skin so medicine can penetrate deeper.'},
+    {q:'What does Clobetasol do in Clorap-S?',o:['Peels skin','Reduces inflammation, redness and itching','Kills fungus','Dries skin'],a:1,exp:'Clobetasol Propionate is a steroid — it reduces inflammation, redness and itching.'},
+    {q:'Which antifungal is in L-Rap?',o:['Ketoconazole','Clotrimazole','Luliconazole','Miconazole'],a:2,exp:'L-Rap contains Luliconazole 1% — a potent topical antifungal.'},
+    {q:'How often is L-Rap applied?',o:['Twice daily','Three times daily','Once daily (OD)','Once weekly'],a:2,exp:'L-Rap is applied just once daily — convenient for patients.'},
+    {q:'What is the cure rate of L-Rap?',o:['Up to 75%','Up to 85%','Up to 95%','Up to 99%'],a:3,exp:'L-Rap achieves up to 99% cure rates in clinical studies.'},
+    {q:'Clorap-S Lotion is best suited for which area?',o:['Thick non-hairy skin','Hair-bearing areas such as the scalp','Only the face','Only the hands'],a:1,exp:'Clorap-S Lotion is non-greasy and light — suitable for hair-bearing areas like the scalp.'},
+    {q:'L-Rap Lotion is best for?',o:['Thick skin only','Small areas','Hairy and large areas','Only the scalp'],a:2,exp:'L-Rap Lotion is suitable for hairy and large areas.'},
+    {q:'L-Rap Cream is best used for?',o:['Hairy areas','Thick skin areas and skin folds','Only the face','Wet areas'],a:1,exp:'L-Rap Cream is best for thick skin areas and skin folds.'},
+    {q:'What does Clorap-S Ointment provide?',o:['Skin peeling only','Deep hydration and moisture retention','Antibacterial action','Oil control'],a:1,exp:'Clorap-S Ointment provides deep hydration and retains moisture in dry, scaly conditions.'}]},
+  {id:'zinase',name:'Zinase Series',subtitle:'Pain & Inflammation',icon:'🔶',color:'#BF360C',light:'#FBE9E7',section:'Physician & Ortho',
+   desc:'Pain and inflammation management — from surgery recovery to gynaecology',
+   products:[
+    {name:'Zinase-D',form:'Tablet',badge:'Enzyme + Pain',comp:'Serratiopeptidase 10mg + Diclofenac Potassium 50mg',color:'#BF360C',
+     hook:'AECP technology ensures 100% absorption — enzyme plus fast pain relief.',
+     kps:[{i:'🔬',t:'AECP Technology',x:'Aqueous Enteric Coated Polymer — 100% absorption, no waste'},
+          {i:'⭐',t:'Superior enzyme',x:'Original Serratia Marcescens (60K Dalton) — highest quality Serratiopeptidase'},
+          {i:'💊',t:'Diclofenac Potassium',x:'Fast-acting pain relief'}],
+     ind:['Post-Surgery','Abscess','Oedema (Swelling)','Fracture & Dislocation','Sprain','Strain'],
+     tag:'Tried, Tested & Trusted'},
+    {name:'Zinase-DP',form:'Tablet',badge:'Enzyme + Pain + Fever',comp:'Serratiopeptidase 10mg + Diclofenac Potassium 50mg + Paracetamol 325mg',color:'#D84315',
+     hook:'Zinase-D plus Paracetamol for additional fever and pain control.',
+     kps:[{i:'3️⃣',t:'Three medicines',x:'Serratiopeptidase + Diclofenac + Paracetamol — triple pain control'},
+          {i:'✅',t:'Same AECP technology',x:'100% absorption — no waste'},
+          {i:'💊',t:'Paracetamol 325mg',x:'Additional fever and pain control'}],
+     ind:['Post-Surgery','Sprain','Strain','Musculoskeletal Pain','Trauma'],
+     tag:'Extra Pain Control with Paracetamol'},
+    {name:'Zinase-Plus',form:'Tablet',badge:'Systemic Enzyme Therapy',comp:'Trypsin 48mg + Bromelain 90mg + Rutoside Trihydrate 100mg + Diclofenac Sodium 50mg',color:'#C62828',
+     hook:'Systemic Enzyme Therapy (SET) — a powerful combination for pain and healing.',
+     kps:[{i:'🧬',t:'SET',x:'Systemic Enzyme Therapy — multiple enzymes working together'},
+          {i:'🔵',t:'Trypsin',x:'Helps wound healing, reduces inflammation, speeds recovery'},
+          {i:'🍍',t:'Bromelain',x:'Antithrombic and fibrinolytic — breaks down blood clots and fibrin'},
+          {i:'🟡',t:'Rutoside',x:'Powerful antioxidant — protects cells from damage'},
+          {i:'💊',t:'Diclofenac',x:'Fast, direct pain relief'}],
+     ind:['Post-Surgery','Traumatic Injury','Fracture & Edema','Pelvic Inflammatory Disease','Dysmenorrhoea'],
+     tag:'Extra Power for Extra Relief'},
+    {name:'Zinase 4D Gel',form:'Gel',badge:'Topical Pain Gel',comp:'Diclofenac 4% + Methyl Salicylate 10% + Linseed Oil 3% + Menthol 5%',color:'#6D4C41',
+     hook:'4 ingredients — 4-dimensional pain relief in one topical gel.',
+     kps:[{i:'4️⃣',t:'4 active ingredients',x:'Each has a different role — complete topical pain relief'},
+          {i:'💊',t:'Diclofenac 4%',x:'Treats moderate to severe musculoskeletal pain'},
+          {i:'🌡️',t:'Methyl Salicylate 10%',x:'Penetration enhancer — helps other medicines go deeper'},
+          {i:'🌱',t:'Linseed Oil 3%',x:'Relieves joint and muscle stiffness'},
+          {i:'❄️',t:'Menthol 5%',x:'Deep cooling action for comfort'}],
+     ind:['Acute Musculoskeletal Pain','Low Back Pain','Sprain','Strain'],
+     tag:'4 Dimensional Approach for Ever Lasting Relief'}],
+   quiz:[
+    {q:'AECP stands for?',o:['Advanced Enzyme Compound Polymer','Aqueous Enteric Coated Polymer','Anti-Enzyme Coated Pellet','Active Enzyme Controlled Polymer'],a:1,exp:'AECP = Aqueous Enteric Coated Polymer Technology — ensures 100% absorption.'},
+    {q:'Zinase-Plus uses which therapy?',o:['ALA Therapy','Systemic Enzyme Therapy (SET)','Nano Particle Therapy','Pellet Therapy'],a:1,exp:'Zinase-Plus uses SET = Systemic Enzyme Therapy.'},
+    {q:'What is the action of Bromelain in Zinase-Plus?',o:['Antifungal','Antihistamine','Antithrombic and Fibrinolytic','Antacid'],a:2,exp:'Bromelain is antithrombic (prevents blood clots) and fibrinolytic (breaks down fibrin).'},
+    {q:'What is Rutoside in Zinase-Plus?',o:['Antibiotic','Powerful antioxidant','Only anti-inflammatory','Antacid'],a:1,exp:'Rutoside Trihydrate is a powerful antioxidant that protects cells from damage.'},
+    {q:'How many active ingredients does Zinase 4D Gel have?',o:['2','3','4','5'],a:2,exp:'Zinase 4D has 4 ingredients: Diclofenac + Methyl Salicylate + Linseed Oil + Menthol.'},
+    {q:'What does Menthol in Zinase 4D Gel provide?',o:['Only pain relief','Deep cooling action','Antibacterial effect','Moisturising effect'],a:1,exp:'Menthol 5% provides deep cooling action for comfort and relief.'},
+    {q:'What extra ingredient does Zinase-DP have vs Zinase-D?',o:['Bromelain','Trypsin','Paracetamol 325mg','Menthol'],a:2,exp:'Zinase-DP = Zinase-D + Paracetamol 325mg for additional pain and fever control.'},
+    {q:'Serratiopeptidase in Zinase-D comes from?',o:['Serratia Marcescens bacteria','Streptococcus','Pineapple extract','Aspergillus mould'],a:0,exp:'Zinase-D uses Original Serratia Marcescens (60K Dalton) — the authentic, high-quality source.'},
+    {q:'Is Zinase-Plus used for Dysmenorrhoea (period pain)?',o:['Yes','No, only for ortho','Only Zinase-D','Not for gynaecology'],a:0,exp:'Yes — Zinase-Plus is used for Dysmenorrhoea, Post-Operative Recovery and PID.'},
+    {q:'What does Linseed Oil do in Zinase 4D Gel?',o:['Only pain relief','Relieves joint and muscle stiffness','Only inflammation','Only cooling'],a:1,exp:'Linseed Oil 3% relieves stiffness in joints and muscles.'}]},
+  {id:'gynae',name:'Gynae Special',subtitle:"Women's Health",icon:'🌹',color:'#880E4F',light:'#FCE4EC',section:'Derma & Gynae',
+   desc:"Women's health range — heavy bleeding, vaginal infections and pregnancy nutrition",
+   products:[
+    {name:'TexId-MF',form:'Tablet',badge:'Bleeding Control',comp:'Tranexamic Acid 500mg + Mefenamic Acid 250mg',color:'#880E4F',
+     hook:'Controls heavy bleeding and period pain in one tablet.',
+     kps:[{i:'🩸',t:'Tranexamic Acid',x:'Antifibrinolytic — stops excessive bleeding'},
+          {i:'💊',t:'Mefenamic Acid',x:'NSAID — controls period pain alongside bleeding'},
+          {i:'✅',t:'Also available',x:'TeXid (Tranexamic Acid 500mg only) in tablet and injection form'}],
+     ind:['Menorrhagia (Heavy Periods)','Dysfunctional Uterine Bleeding','IUCD-Induced Bleeding','Post-Partum Haemorrhage','MTP-Induced Bleeding'],
+     tag:'Your Partner in Haemostatic Management'},
+    {name:'Etex-T',form:'Tablet',badge:'Emergency Bleeding',comp:'Etamsylate 250mg + Tranexamic Acid 250mg',color:'#B71C1C',
+     hook:'Improves platelet function for emergency bleeding control.',
+     kps:[{i:'🩸',t:'Etamsylate',x:'Improves platelet function — helps the body clot faster'},
+          {i:'🔒',t:'Tranexamic Acid',x:'Antifibrinolytic — prevents the clot from dissolving'},
+          {i:'⚡',t:'Emergency use',x:'For acute and emergent bleeding situations'}],
+     ind:['Menorrhagia','Post-Abortal Haemorrhage','Abruption Placenta','MTP-Induced Bleeding'],
+     tag:'Quick Action in Emergent Bleeding'},
+    {name:'Ginlac-V',form:'Vaginal Tablet',badge:'Vaginal Infection',comp:'Clotrimazole 200mg + Tinidazole 500mg + Lactic Acid Bacillus 150 million spores',color:'#7B1FA2',
+     hook:'Treats vaginal infections from multiple causes — complete therapy in just 4 nights.',
+     kps:[{i:'🔬',t:'NVDD Technology',x:'Novel Vaginal Drug Delivery — medicine delivered directly to the infection site'},
+          {i:'⚖️',t:'Maintains pH 4.5',x:'Lactic Acid restores healthy vaginal pH — prevents recurrence'},
+          {i:'✅',t:'Clotrimazole',x:'Antifungal — treats yeast infection'},
+          {i:'🦠',t:'Tinidazole',x:'Treats Trichomoniasis and Bacterial Vaginosis'},
+          {i:'🌱',t:'Lactic Acid Bacillus',x:'Restores healthy vaginal bacteria after infection'},
+          {i:'⏰',t:'4 nights only',x:'Complete therapy in just 4 nights'}],
+     ind:['Leukorrhoea (White Discharge)','Trichomoniasis','Bacterial Vaginosis','Vaginal Yeast Infection'],
+     tag:'Complete Therapy in Just 4 Nights'},
+    {name:'Calex Total / Calex-D3 (Gynae)',form:'Tablet',badge:'Pregnancy Nutrition',comp:'Calex Total: 7-in-1 | Calex-D3: Calcium Citrate Malate + Vitamin D3 1000IU',color:'#1565C0',
+     hook:'Essential calcium and Vitamin D supplementation for pregnant and lactating women.',
+     kps:[{i:'🤰',t:'Best calcium form',x:'Calcium Citrate Malate — absorbs without food, no kidney stone risk'},
+          {i:'🌞',t:'Vitamin D3',x:'Helps calcium absorption and fetal bone development'},
+          {i:'🧬',t:'L-Methyl Folate (B9)',x:'Supports fetal neural tube development — prevents neural tube defects'},
+          {i:'⚠️',t:'Deficiency risks',x:'Low Vitamin D and calcium increases Preeclampsia risk by 80% and Low Birth Weight by 52%'}],
+     ind:['Pregnancy & Lactation','PMS','Pre-eclampsia','PCOS','Post-Menopausal Osteoporosis'],
+     tag:'Essential Supplementation for Every Woman'},
+    {name:'Mecobal-OD (Gynae)',form:'Sublingual Tablet',badge:'B12 in Pregnancy',comp:'Mecobalamin 1500 mcg',color:'#C62828',
+     hook:'80% of rural and 65% of urban pregnant women in India are Vitamin B12 deficient.',
+     kps:[{i:'📊',t:'Deficiency data',x:'80% rural and 65% urban pregnant women have Vitamin B12 deficiency'},
+          {i:'👶',t:'Risks',x:'Low baby weight, poor fetal development, increased miscarriage risk'},
+          {i:'⚡',t:'Sublingual route',x:'Fast absorption — works even during nausea'},
+          {i:'🍓',t:'Strawberry flavour',x:'Easy to take during pregnancy'}],
+     ind:['Gestational Diabetes','Pre-eclampsia','Low Birth Weight Prevention','Poor Fetal Development'],
+     tag:'Critical B12 Support During Pregnancy'}],
+   quiz:[
+    {q:'Which antifibrinolytic is in TexId-MF?',o:['Mefenamic Acid','Tranexamic Acid','Ibuprofen','Diclofenac'],a:1,exp:'Tranexamic Acid is the antifibrinolytic — it stops excessive bleeding.'},
+    {q:'How many nights does Ginlac-V treatment last?',o:['1 night','2 nights','3 nights','4 nights'],a:3,exp:'Ginlac-V provides complete therapy in just 4 nights.'},
+    {q:'DUB stands for?',o:['Drug Ulcer Bleeding','Dysfunctional Uterine Bleeding','Deep Uterus Bleeding','Dangerous Uterine Blood'],a:1,exp:'DUB = Dysfunctional Uterine Bleeding.'},
+    {q:'What does Etamsylate do in Etex-T?',o:['Liver support','Improves platelet function — helps blood clot faster','Kidney support','Nerve support'],a:1,exp:'Etamsylate improves platelet function — helps the body form a clot faster.'},
+    {q:'What vaginal pH does Ginlac-V maintain?',o:['3.5','4.5','5.5','6.5'],a:1,exp:'Ginlac-V maintains healthy vaginal pH of 4.5 — prevents recurrence.'},
+    {q:'How many percent of Candida species does Odicon-150 inhibit?',o:['70%','80%','90%','100%'],a:2,exp:'Odicon-150 inhibits 90% of Candida species.'},
+    {q:'Which ingredient in Ginlac-V treats Trichomoniasis?',o:['Clotrimazole','Lactic Acid Bacillus','Tinidazole','Fluconazole'],a:2,exp:'Tinidazole treats Trichomoniasis and Bacterial Vaginosis.'},
+    {q:'MTP stands for?',o:['Medical Termination of Pregnancy','Minimal Tissue Procedure','Maximum Therapeutic Period','Medical Treatment Protocol'],a:0,exp:'MTP = Medical Termination of Pregnancy.'},
+    {q:'What percentage of rural pregnant women have Vitamin B12 deficiency?',o:['40%','55%','65%','80%'],a:3,exp:'80% of rural and 65% of urban pregnant women have Vitamin B12 deficiency.'},
+    {q:'Which ingredient in Ginlac-V restores healthy vaginal bacteria?',o:['Clotrimazole','Tinidazole','Lactic Acid Bacillus','Fluconazole'],a:2,exp:'Lactic Acid Bacillus restores healthy vaginal flora after infection.'}]}
+];
+
+let ST={user:{name:'',hq:''},progress:{},curr:null,quiz:{qi:0,ans:[],score:0,wrongs:[]}};
+function save(){localStorage.setItem('rplms4',JSON.stringify({user:ST.user,progress:ST.progress}))}
+function load(){try{const d=JSON.parse(localStorage.getItem('rplms4')||'{}');if(d.user?.name){ST.user=d.user;ST.progress=d.progress||{};return true;}}catch(e){}return false;}
+function goTo(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const s=document.getElementById(id);if(s){s.classList.add('active');window.scrollTo(0,0);}}
+function startApp(){
+  const name=document.getElementById('inp-name').value.trim();
+  const password=document.getElementById('inp-hq').value.trim();
+
+  if(!name){
+    alert('Please enter your full name.');
+    return;
+  }
+
+  if(password!=="Rap2345"){
+    alert('Incorrect Password.');
+    return;
+  }
+
+  ST.user={name,hq:'Verified User'};
+  save();
+  showDashboard();
+}
+function showDashboard(){
+  goTo('sd');
+  const done=LINES.filter(l=>ST.progress[l.id]?.passed).length,pct=Math.round((done/LINES.length)*100);
+  document.getElementById('nav-nm').textContent=ST.user.name;
+  document.getElementById('nav-hq').textContent='📍 '+ST.user.hq;
+  document.getElementById('hero-name').innerHTML='Welcome, <span>'+ST.user.name.split(' ')[0]+'!</span>';
+  document.getElementById('prog-val').textContent=done+' / '+LINES.length+' Modules';
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('st-done').textContent=done;
+  document.getElementById('st-cert').textContent=done;
+  let html='';
+  ['Physician & Ortho','Derma & Gynae'].forEach(sec=>{
+    const ls=LINES.filter(l=>l.section===sec);
+    html+='<div class="sec-hdr"><span class="sec-badge">'+sec+'</span><span class="sec-cnt">'+ls.length+' modules</span></div><div class="mgrid">';
+    ls.forEach(l=>{
+      const p=ST.progress[l.id];
+      let pill='<span class="spill sp-lock">Start →</span>',cls='';
+      if(p?.passed){pill='<span class="spill sp-done">✅ Passed</span>';cls='done';}
+      else if(p&&!p.passed){pill='<span class="spill sp-fail">Try Again</span>';}
+      html+='<div class="mcard '+cls+'" onclick="openLearn(\''+l.id+'\')">'
+        +'<div class="mstrip" style="background:'+l.color+'"></div>'
+        +'<div class="mhdr"><div class="mico" style="background:'+l.light+'">'+l.icon+'</div>'
+        +'<div><div class="mnm">'+l.name+'</div><div class="mst">'+l.subtitle+'</div></div></div>'
+        +'<div class="mdesc">'+l.desc+'</div>'
+        +'<div class="mftr"><div class="mmeta"><span class="mmetai">📦 '+l.products.length+' products</span><span class="mmetai">❓ 10 questions</span></div>'+pill+'</div>'
+        +(p?.passed?'<div class="score-show">'+p.score+'/10</div>':'')
+        +'</div>';
+    });
+    html+='</div>';
+  });
+  document.getElementById('dash-content').innerHTML=html;
+}
+let apIdx=0;
+function openLearn(id){ST.curr=LINES.find(l=>l.id===id);apIdx=0;renderLearn();goTo('sl');}
+function renderLearn(){
+  const line=ST.curr,pr=line.products[apIdx],p=ST.progress[line.id];
+  document.getElementById('lnav-t').textContent=line.name;
+  document.getElementById('lnav-s').textContent=line.subtitle+' — '+line.section;
+  const c=pr.color||line.color;
+  const tabs=line.products.length>1?'<div class="ptabs">'+line.products.map((x,i)=>'<button class="ptab'+(i===apIdx?' active':'')+'" onclick="switchProd('+i+')" style="'+(i===apIdx?'background:'+c:'')+'">'+x.name+'</button>').join('')+'</div>':'';
+  document.getElementById('lbody').innerHTML=
+    '<div class="mbanner" style="background:linear-gradient(135deg,'+line.color+','+dk(line.color,30)+')">'
+    +'<div class="mb-emoji">'+line.emoji+'</div><div class="mb-title">'+line.name+'</div>'
+    +'<div class="mb-sub">'+line.desc+'</div>'
+    +'<div class="mb-tags">'+line.products.map(x=>'<span class="mb-tag">💊 '+x.name+'</span>').join('')
+    +'<span class="mb-tag">❓ 10 MCQs</span><span class="mb-tag">🏆 Certificate</span></div></div>'
+    +tabs
+    +'<div class="pcard"><div class="phdr" style="background:linear-gradient(135deg,'+c+','+dk(c,25)+')">'
+    +'<span class="ph-badge">'+pr.badge+'</span><span class="ph-name">'+pr.name+'</span><span class="ph-form">'+pr.form+'</span></div>'
+    +'<div class="pbody"><div class="cbox"><div class="cbox-lbl">💊 Composition</div><div class="cbox-val">'+pr.comp+'</div></div>'
+    +'<div class="phook">'+pr.hook+'</div>'
+    +'<div class="kplist">'+pr.kps.map(k=>'<div class="kp" style="border-left-color:'+c+'"><div class="kp-ico">'+k.i+'</div><div><div class="kp-title" style="color:'+c+'">'+k.t+'</div><div class="kp-text">'+k.x+'</div></div></div>').join('')+'</div>'
+    +'<div class="ilbl">Used For</div><div class="itags">'+pr.ind.map(i=>'<span class="itag" style="color:'+c+';border-color:'+c+'40;background:'+lt(c)+'">'+i+'</span>').join('')+'</div>'
+    +'<div class="tagbox" style="background:linear-gradient(135deg,'+c+','+dk(c,25)+')">'+pr.tag+'</div></div></div>'
+    +'<div class="qcta"><div class="qcta-title">📝 Ready for the Quiz?</div>'
+    +'<div class="qcta-sub">Read all the product information above, then test your knowledge.'+(p?.passed?'<br><strong style="color:var(--green)">✅ You previously scored '+p.score+'/10. You can retake to improve.</strong>':'')+'</div>'
+    +'<div class="qcta-info"><span class="qcta-pill">❓ 10 questions</span><span class="qcta-pill">⭐ Pass mark: 85% (9/10)</span><span class="qcta-pill">🏆 Certificate on passing</span></div>'
+    +'<button class="btn-sq" onclick="startQuiz()">▶ Start Quiz</button></div>';
+}
+function switchProd(i){apIdx=i;renderLearn();}
+function dk(hex,a){hex=hex.replace('#','');let r=parseInt(hex.slice(0,2),16),g=parseInt(hex.slice(2,4),16),b=parseInt(hex.slice(4,6),16);return '#'+[Math.max(0,r-a),Math.max(0,g-a),Math.max(0,b-a)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+function lt(hex){hex=hex.replace('#','');let r=parseInt(hex.slice(0,2),16),g=parseInt(hex.slice(2,4),16),b=parseInt(hex.slice(4,6),16);return 'rgba('+r+','+g+','+b+',.08)';}
+function startQuiz(){ST.quiz={qi:0,ans:[],score:0,wrongs:[]};document.getElementById('qtitle').textContent=ST.curr.name+' — Quiz';renderQ();goTo('sq');}
+function renderQ(){
+  const qi=ST.quiz.qi,q=ST.curr.quiz[qi],tot=ST.curr.quiz.length;
+  document.getElementById('qcnt').textContent='Q '+(qi+1)+' / '+tot;
+  document.getElementById('qpb-fill').style.width=Math.round((qi/tot)*100)+'%';
+  document.getElementById('ls-c').textContent='✅ '+ST.quiz.score;
+  document.getElementById('ls-w').textContent='❌ '+(ST.quiz.ans.length-ST.quiz.score);
+  document.getElementById('qbody').innerHTML=
+    '<div class="qcard"><div class="qnum">Question '+(qi+1)+' of '+tot+'</div><div class="qtxt">'+q.q+'</div>'
+    +'<div class="opts" id="opts">'+q.o.map((o,i)=>'<button class="opt" id="o'+i+'" onclick="pick('+i+')"><span class="opt-l">'+['A','B','C','D'][i]+'</span><span>'+o+'</span></button>').join('')+'</div>'
+    +'<div class="expbox" id="expbox"></div></div>'
+    +'<div class="nwrap" id="nwrap"><button class="btn-next" onclick="nextQ()">'+(qi===tot-1?'View Result →':'Next Question →')+'</button></div>';
+}
+function pick(sel){
+  const q=ST.curr.quiz[ST.quiz.qi],cor=q.a;
+  document.querySelectorAll('.opt').forEach(o=>o.disabled=true);
+  document.getElementById('o'+cor).classList.add('correct');
+  const exp=document.getElementById('expbox');
+  if(sel===cor){ST.quiz.score++; exp.className='expbox exp-c show'; exp.innerHTML='<div class="explbl">✅ Correct!</div>'+q.exp;}
+  else{document.getElementById('o'+sel).classList.add('wrong'); ST.quiz.wrongs.push({q:q.q,opts:q.o,sel,correct:cor,exp:q.exp}); exp.className='expbox exp-w show'; exp.innerHTML='<div class="explbl">❌ Incorrect — Correct answer: '+q.o[cor]+'</div>'+q.exp;}
+  ST.quiz.ans.push(sel);
+  document.getElementById('nwrap').classList.add('show');
+}
+function nextQ(){ST.quiz.qi++;if(ST.quiz.qi>=ST.curr.quiz.length)showResult();else{renderQ();window.scrollTo(0,0);}}
+function showResult(){
+  const s=ST.quiz.score,tot=ST.curr.quiz.length,pct=Math.round((s/tot)*100),passed=s>=9,line=ST.curr,prev=ST.progress[line.id];
+  ST.progress[line.id]={passed:(prev?.passed||passed),score:Math.max(s,prev?.score||0),attempts:(prev?.attempts||0)+1};
+  save();
+  const card=document.getElementById('rcard');
+  card.className='rcard '+(passed?'pass':'fail');
+  document.getElementById('r-emoji').textContent=passed?'🎉':'💪';
+  document.getElementById('r-score').textContent=s;
+  document.getElementById('r-title').textContent=passed?'Congratulations! You Passed!':'Keep Trying!';
+  document.getElementById('r-sub').textContent=passed?'You have passed the '+line.name+' module.':'You need 9 or more correct answers. Study again and retry.';
+  document.getElementById('rd-c').textContent=s;
+  document.getElementById('rd-w').textContent=tot-s;
+  const ring=document.getElementById('ring-prog');
+  ring.className='ring-prog '+(passed?'ring-pass':'ring-fail');
+  setTimeout(()=>{ring.style.strokeDashoffset=283-(283*(s/tot));},100);
+  let btns='';
+  if(passed){btns+='<button class="btn-cert" onclick="showCert()">🏆 View & Print Certificate</button>';}
+  if(ST.quiz.wrongs.length>0){btns+='<button class="btn-retry" onclick="showReview()">📋 Review Wrong Answers</button>';}
+  if(!passed){btns+='<button class="btn-retry" onclick="openLearn(\''+line.id+'\')">📖 Study Again & Retry</button>';}
+  btns+='<button class="btn-home" onclick="showDashboard()">← Back to Dashboard</button>';
+  document.getElementById('rbtns').innerHTML=btns;
+  goTo('sr');
+  if(passed)confetti();
+}
+function showReview(){
+  const letters=['A','B','C','D'],w=ST.quiz.wrongs;
+  let html='<div class="rev-h">Answer Review</div><div class="rev-s">'+w.length+' question'+(w.length!==1?'s':'')+' answered incorrectly.</div>';
+  if(!w.length){html+='<div style="text-align:center;padding:40px;color:var(--muted);font-size:15px">🎉 No wrong answers to review!</div>';}
+  else w.forEach((x,i)=>{
+    html+='<div class="rev-item"><div class="rev-qrow"><div class="rqico w">✗</div><div class="rev-qtxt">'+(i+1)+'. '+x.q+'</div></div>'
+      +'<div class="rev-opts">'+x.opts.map((o,j)=>'<div class="ropt '+(j===x.correct?'ropt-c':j===x.sel?'ropt-w':'ropt-n')+'">'+letters[j]+'. '+o+(j===x.correct?' ✓':'')+(j===x.sel&&j!==x.correct?' ✗':'')+'</div>').join('')+'</div>'
+      +'<div class="rev-exp">💡 '+x.exp+'</div></div>';
+  });
+  document.getElementById('revbody').innerHTML=html;
+  goTo('srev');
+}
+function showCert(){
+  const line=ST.curr,p=ST.progress[line.id],s=p?.score||ST.quiz.score,pct=Math.round((s/line.quiz.length)*100);
+  const today=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  document.getElementById('cert-name').textContent=ST.user.name;
+  document.getElementById('cert-hq').textContent='📍 HQ: '+ST.user.hq;
+  document.getElementById('cert-mod').textContent=line.name+' — '+line.subtitle;
+  document.getElementById('cert-sc').textContent='Score: '+s+'/'+line.quiz.length+' · '+pct+'% · PASSED';
+  document.getElementById('cert-dt').textContent=today;
+  document.getElementById('cert-sec').textContent=line.section;
+  document.getElementById('cert-ov').classList.add('show');
+}
+function closeCert(){document.getElementById('cert-ov').classList.remove('show');}
+function confetti(){
+  const cols=['#F59E0B','#16A34A','#1565C0','#DC2626','#8B5CF6','#FCD34D'];
+  for(let i=0;i<80;i++)setTimeout(()=>{
+    const el=document.createElement('div');el.className='conf';
+    el.style.cssText='left:'+Math.random()*100+'vw;background:'+cols[~~(Math.random()*cols.length)]+';animation-duration:'+(1.5+Math.random()*2)+'s;border-radius:'+(Math.random()>.5?'50%':'2px')+';width:'+(6+Math.random()*6)+'px;height:'+(6+Math.random()*6)+'px';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),3500);
+  },i*25);
+}
+if(load()&&ST.user.name)showDashboard();else goTo('sw');
+</script>
+</body>
+</html>
