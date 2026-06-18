@@ -412,29 +412,100 @@ const LINES=[
    products:[
     {name:'LCZ 5 / LCZ 10',form:'Tablet & Syrup',badge:'Anti-Allergy',comp:'Levocetirizine 5mg or 10mg Tablet | Levocetirizine 2.5mg/5ml Syrup',color:'#6A1B9A',
      hook:'Levocetirizine is an anti-allergy medicine that helps reduce sneezing, runny nose and itching.',
-     kps:[{i:'⚡',t:'Allergy',x:'Allergy occurs when the body releases histamine in response to allergens (Which causes Allergy) such as dust, pollen, smoke, weather changes. Common symptoms: Sneezing, Runny Nose, Watery Eyes, Itching, Skin Allergy. Allergic Rhinitis is the most common allergic'},
+     kps:[{i:'⚡',t:'Allergy',x:'Allergy occurs when the body releases histamine in response to allergens (Which causes Allergy) such as dust, pollen, smoke, weather changes. Common symptoms: Sneezing, Runny Nose, Watery Eyes, Itching, Skin Allergy. Allergic Rhinitis is the most common allergic response'},
           {i:'🔵',t:'Mechanism of Action',x:'Levocetirizine selectively blocks H1 receptors and inhibits histamine action responsible for allergy symptoms. By blocking histamine, LCZ reduces sneezing, rhinorrhea, itching, and watery eyes.'},
-          {i:'🟢',t:'Unique Selling Points (USPs)',x:'Rapidly resolves allergy symptoms with faster onset of action and longer duration of action.'},
-          {i:'👶',t:'MRP',x:'LCZ 5 mg: ₹3.23/Tablet'}],
+          {i:'🟢',t:'Unique Selling Points (USP)',x:'Rapidly resolves allergy symptoms with faster onset of action and longer duration of action.'},
+          {
+ i:'💰',
+ t:'Competitors',
+ x:`
+ <table style="border-collapse:collapse;width:100%;font-size:12px">
+   <tr>
+     <th style="border:1px solid #ddd;padding:8px">Product</th>
+     <th style="border:1px solid #ddd;padding:8px">Company</th>
+     <th style="border:1px solid #ddd;padding:8px">MRP</th>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">LCZ 5 mg</td>
+     <td style="border:1px solid #ddd;padding:8px">Rapross</td>
+     <td style="border:1px solid #ddd;padding:8px">₹3.23/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Levosiz 5 mg</td>
+     <td style="border:1px solid #ddd;padding:8px">Systopic</td>
+     <td style="border:1px solid #ddd;padding:8px">₹3.09/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Levocet 5mg</td>
+     <td style="border:1px solid #ddd;padding:8px">Hetro</td>
+     <td style="border:1px solid #ddd;padding:8px">₹5.30/Tablet</td>
+   </tr>
+
+<tr>
+     <td style="border:1px solid #ddd;padding:8px">1 AL 5mg</td>
+     <td style="border:1px solid #ddd;padding:8px">FDC</td>
+     <td style="border:1px solid #ddd;padding:8px">₹3.57/Tablet</td>
+   </tr>
+
+ </table>`
+}],
      ind:['Watery Eyes','Sneezing','Runny Nose','Skin Allergy','Allergic Rhinitis','Anaphylaxis'],
      tag:'LCZ means Levocetirizine'},
     {name:'LCZ-Mont',form:'Bilayered Tablet',badge:'Allergy + Asthma',comp:'Levocetirizine 5mg + Montelukast 10mg',color:'#1565C0',
-     hook:'Anti-allergy and asthma controller in one bilayered tablet.',
-     kps:[{i:'🔵',t:'Bilayered design',x:'Two medicines in two separate layers — no drug interaction'},
-          {i:'💰',t:'Price',x:'Only ₹4.35 per tablet'},
-          {i:'🫁',t:'Best for',x:'Rhinitis with asthma, chronic urticaria, perennial allergic conditions'}],
+     hook:'Anti-allergy and asthma control in one bilayered tablet.',
+     kps:[{i:'🔵',t:'Bilayered design',x:'Two medicines in two separate layers — no drug interaction between Acid stable Levocetirizine and Alkaline stable Montelukast'},
+          {i:'💰',
+ t:'Competitors',
+ x:`
+ <table style="border-collapse:collapse;width:100%;font-size:12px">
+   <tr>
+     <th style="border:1px solid #ddd;padding:8px">Product</th>
+     <th style="border:1px solid #ddd;padding:8px">Company</th>
+     <th style="border:1px solid #ddd;padding:8px">MRP</th>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">LCZ Mont</td>
+     <td style="border:1px solid #ddd;padding:8px">Rapross</td>
+     <td style="border:1px solid #ddd;padding:8px">₹4.35/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Levosiz M</td>
+     <td style="border:1px solid #ddd;padding:8px">Systopic</td>
+     <td style="border:1px solid #ddd;padding:8px">₹6.75/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Levocet M</td>
+     <td style="border:1px solid #ddd;padding:8px">Hetro</td>
+     <td style="border:1px solid #ddd;padding:8px">₹11.20/Tablet</td>
+   </tr>
+
+<tr>
+     <td style="border:1px solid #ddd;padding:8px">Monticope</td>
+     <td style="border:1px solid #ddd;padding:8px">Mankind</td>
+     <td style="border:1px solid #ddd;padding:8px">₹10.30/Tablet</td>
+   </tr>
+
+ </table>`
+},
+          {i:'🫁',t:'Also Available SKU for Pediatrics',x:'LCZ Mont Kid (Contains Levocetirizine 2.5mg + Montelukast 4mg) available in Dispersible tablet in Mixed Fruit Flavour and LCZ Mont suspension'}],
      ind:['Rhinitis with Asthma','Seasonal Allergic Rhinitis','Chronic Urticaria'],
      tag:'Maximum Relief at Unbeatable Price'},
     {name:'LCZ Plus',form:'Tablet',badge:'Cold & Fever',comp:'CPM 2mg + Phenylephrine 10mg + Paracetamol 500mg',color:'#2E7D32',
-     hook:'3-in-1 tablet for cold, blocked nose and fever.',
+     hook:'LCZ Plus Tablet for cold, blocked nose and fever.',
      kps:[{i:'🛡️',t:'CPM',x:'Anti-allergic — stops sneezing and runny nose'},
           {i:'👃',t:'Phenylephrine',x:'Nasal decongestant — opens a blocked nose'},
-          {i:'🌡️',t:'Paracetamol 500mg',x:'Full dose — controls fever and body ache'}],
-     ind:['Blocked Nose','Runny Nose','Fever & Body Ache','Sinusitis'],
+          {i:'🌡️',t:'Paracetamol 500mg',x:'Full Therapeutic dose of Paracetamol — controls fever and body ache'}],
+     ind:['Nasal Congestion','Runny Nose','Fever & Body Ache','Sinusitis'],
      tag:'A Reliable Formula for Rapid Relief'},
     {name:'LCZ-XP Expectorant',form:'Syrup',badge:'Cough Syrup',comp:'Ambroxol 15mg + Guaiphenesin 50mg + Levocetirizine 2.5mg + Menthol 1mg / 5ml',color:'#C62828',
      hook:'Treats allergic cough with mucus — and does NOT cause drowsiness.',
-     kps:[{i:'🍒',t:'Cherry flavour',x:'Pleasant taste for better compliance'},
+     kps:[{i:'🍒',t:'Cherry flavour',x:'Delicious Cherry Flavour for better compliance'},
           {i:'💧',t:'Ambroxol',x:'Mucolytic — thins and breaks down thick mucus'},
           {i:'🫁',t:'Guaiphenesin',x:'Expectorant — helps expel mucus from the lungs'},
           {i:'😴',t:'No drowsiness',x:'Patient stays fully alert and active'}],
@@ -455,17 +526,52 @@ const LINES=[
    desc:'Controls stomach acid — relieves acidity, GERD and nausea',
    products:[
     {name:'Raptac-D',form:'Capsule',badge:'PPI + Prokinetic',comp:'Rabeprazole 20mg + Domperidone 10mg (IR) + 20mg (SR)',color:'#C62828',
-     hook:'3 medicines in 1 capsule — blocks acid, stops nausea and vomiting.',
-     kps:[{i:'💊',t:'What it contains',x:'Rabeprazole (acid blocker) + Domperidone (stops nausea and vomiting)'},
-          {i:'💰',t:'Price',x:'Only ₹3.90 per capsule — most affordable PPI + Prokinetic in India'},
-          {i:'⏰',t:'Duration',x:'Controls acid for 24 hours — one capsule per day'}],
+     hook:'Raptac D — blocks acid, stops nausea and vomiting.',
+    kps:[{i:'💊',t:'What it Acidity',x:'Acidity occurs when the stomach produces excess acid, causing symptoms such as a burning sensation in the chest or stomach, indigestion, and discomfort. Nausea is the feeling of wanting to vomit. Rabeprazole is a proton pump inhibitor (PPI) that works by reducing the production of stomach acid, thereby relieving acidity and protecting the stomach lining. Domperidone improves the movement of food through the stomach and intestines, helping to reduce nausea, vomiting, bloating, and a feeling of fullness. Together, these medicines help control acidity and improve digestive comfort.'},
+                {i:'💰',
+ t:'Competitors',
+ x:`
+ <table style="border-collapse:collapse;width:100%;font-size:12px">
+   <tr>
+     <th style="border:1px solid #ddd;padding:8px">Product</th>
+     <th style="border:1px solid #ddd;padding:8px">Company</th>
+     <th style="border:1px solid #ddd;padding:8px">MRP</th>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Raptac-D</td>
+     <td style="border:1px solid #ddd;padding:8px">Rapross</td>
+     <td style="border:1px solid #ddd;padding:8px">₹3.90/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Cyra D</td>
+     <td style="border:1px solid #ddd;padding:8px">Systopic</td>
+     <td style="border:1px solid #ddd;padding:8px">₹4.78/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Mac RD</td>
+     <td style="border:1px solid #ddd;padding:8px">Corona</td>
+     <td style="border:1px solid #ddd;padding:8px">₹5.78/Tablet</td>
+   </tr>
+
+<tr>
+     <td style="border:1px solid #ddd;padding:8px">Rabekind DSR</td>
+     <td style="border:1px solid #ddd;padding:8px">Mankind</td>
+     <td style="border:1px solid #ddd;padding:8px">₹7.75/Tablet</td>
+   </tr>
+
+ </table>`
+},
+          {i:'⏰',t:'Unique Selling Points (USP)',x:'Rabeprazole (acid blocker) + Domperidone (stops nausea and vomiting). Controls acid for 24 hours — one capsule per day'}],
      ind:['Peptic Ulcer','Gastritis','Drug-Induced Gastritis','Esophagitis','Gastroparesis'],
      tag:'Rapid, Total Acid Control'},
     {name:'Raptac-20',form:'Tablet',badge:'PPI',comp:'Rabeprazole Sodium 20mg',color:'#B71C1C',
      hook:'Simple, affordable acid blocker for long-term use.',
      kps:[{i:'⚡',t:'Action',x:'Symptom relief starts within 1 day'},
           {i:'💰',t:'Price',x:'Only ₹2.50 per tablet — most affordable PPI in India'},
-          {i:'🔧',t:'Healing',x:'Repairs the stomach lining — more than 95% healing in 4 to 8 weeks'},
+          {i:'🔧',t:'Unique Selling Point (USP)',x:'Repairs the stomach lining — more than 95% healing in 4 to 8 weeks'},
           {i:'🛡️',t:'Safety',x:'High safety profile — suitable for long-term use'}],
      ind:['Peptic Ulcer','Gastritis','Long-Term GERD','Esophagitis'],
      tag:'Rapid, Total Acid Control'}],
@@ -749,7 +855,7 @@ const LINES=[
     {q:'Serratiopeptidase in Zinase-D comes from?',o:['Serratia Marcescens bacteria','Streptococcus','Pineapple extract','Aspergillus mould'],a:0,exp:'Zinase-D uses Original Serratia Marcescens (60K Dalton) — the authentic, high-quality source.'},
     {q:'Is Zinase-Plus used for Dysmenorrhoea (period pain)?',o:['Yes','No, only for ortho','Only Zinase-D','Not for gynaecology'],a:0,exp:'Yes — Zinase-Plus is used for Dysmenorrhoea, Post-Operative Recovery and PID.'},
     {q:'What does Linseed Oil do in Zinase 4D Gel?',o:['Only pain relief','Relieves joint and muscle stiffness','Only inflammation','Only cooling'],a:1,exp:'Linseed Oil 3% relieves stiffness in joints and muscles.'}]},
-  {id:'gynae',name:'Gynae Special',subtitle:"Women's Health",icon:'🌹',color:'#880E4F',light:'#FCE4EC',section:'Derma & Gynae',
+  {id:'gynae',name:'Gynae',subtitle:"Women's Health",icon:'🌹',color:'#880E4F',light:'#FCE4EC',section:'Derma & Gynae',
    desc:"Women's health range — heavy bleeding, vaginal infections and pregnancy nutrition",
    products:[
     {name:'TexId-MF',form:'Tablet',badge:'Bleeding Control',comp:'Tranexamic Acid 500mg + Mefenamic Acid 250mg',color:'#880E4F',
