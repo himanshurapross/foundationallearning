@@ -1059,7 +1059,7 @@ function showCert(){
   const line=ST.curr,p=ST.progress[line.id],s=p?.score||ST.quiz.score,pct=Math.round((s/line.quiz.length)*100);
   const today=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
   document.getElementById('cert-name').textContent=ST.user.name;
-  document.getElementById('cert-hq').textContent='📍 HQ: '+ST.user.hq;
+  document.getElementById('cert-hq').textContent=' : '+ST.user.hq;
   document.getElementById('cert-mod').textContent=line.name+' — '+line.subtitle;
   document.getElementById('cert-sc').textContent='Score: '+s+'/'+line.quiz.length+' · '+pct+'% · PASSED';
   document.getElementById('cert-dt').textContent=today;
