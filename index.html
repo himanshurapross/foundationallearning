@@ -430,12 +430,12 @@ const LINES=[
    <tr>
      <td style="border:1px solid #ddd;padding:8px">Levosiz 5 mg</td>
      <td style="border:1px solid #ddd;padding:8px">Systopic</td>
-     <td style="border:1px solid #ddd;padding:8px">₹3.09/Tablet</td>
+     <td style="border:1px solid #ddd;padding:8px">₹2.06/Tablet</td>
    </tr>
 
    <tr>
      <td style="border:1px solid #ddd;padding:8px">Levocet 5mg</td>
-     <td style="border:1px solid #ddd;padding:8px">Hetro</td>
+     <td style="border:1px solid #ddd;padding:8px">Hetero</td>
      <td style="border:1px solid #ddd;padding:8px">₹5.30/Tablet</td>
    </tr>
 
@@ -471,19 +471,19 @@ const LINES=[
    <tr>
      <td style="border:1px solid #ddd;padding:8px">Levosiz M</td>
      <td style="border:1px solid #ddd;padding:8px">Systopic</td>
-     <td style="border:1px solid #ddd;padding:8px">₹6.75/Tablet</td>
+     <td style="border:1px solid #ddd;padding:8px">₹7.30/Tablet</td>
    </tr>
 
    <tr>
      <td style="border:1px solid #ddd;padding:8px">Levocet M</td>
-     <td style="border:1px solid #ddd;padding:8px">Hetro</td>
+     <td style="border:1px solid #ddd;padding:8px">Hetero</td>
      <td style="border:1px solid #ddd;padding:8px">₹11.20/Tablet</td>
    </tr>
 
 <tr>
      <td style="border:1px solid #ddd;padding:8px">Monticope</td>
      <td style="border:1px solid #ddd;padding:8px">Mankind</td>
-     <td style="border:1px solid #ddd;padding:8px">₹10.30/Tablet</td>
+     <td style="border:1px solid #ddd;padding:8px">₹11.30/Tablet</td>
    </tr>
 
  </table>`
@@ -673,19 +673,54 @@ const LINES=[
   {id:'calex',name:'Calex & Rap-60k',subtitle:'Bone & Vitamin D',icon:'🔵',color:'#0D47A1',light:'#E3F2FD',section:'Physician & Ortho',
    desc:'Calcium and Vitamin D — highest absorption formula for strong bones',
    products:[
-    {name:'Calex Total',form:'Tablet',badge:'7-in-1 Bone Formula',comp:'Calcium Citrate Malate + Magnesium + Zinc + Vit D3 2000IU + Methylcobalamin + L-Methyl Folate + Pyridoxal-5-phosphate',color:'#0D47A1',
+    {name:'Calex Total',form:'Tablet',badge:'7-in-1 Total Recovery Formula',comp:'Calcium Citrate Malate 1170 (Elemental Calcium 250mg) + Magnesium 75mg + Zinc 5mg + Vit D3 2000IU + Methylcobalamin 1500mcg + L-Methyl Folate 1mg + Pyridoxal-5-phosphate 20mg',color:'#0D47A1',
      hook:'7 nutrients in one tablet — the most complete bone supplement at ₹11.90.',
-     kps:[{i:'7️⃣',t:'7 ingredients',x:'Complete nutritional support — only ₹11.90 per tablet'},
-          {i:'✅',t:'Best calcium form',x:'Calcium Citrate Malate absorbs at 45% vs Calcium Carbonate only 15%'},
-          {i:'☀️',t:'Vitamin D3 2000IU',x:'Helps the body absorb calcium — essential for bone strength'},
-          {i:'💪',t:'Zinc',x:'Supports immunity and wound healing'}],
+     kps:[{i:'7️⃣',t:'Best Calcium with Vitamin D3',x:'Complete nutritional support — only ₹11.90 per tablet. Calcium Citrate Malate absorbs at 45% vs Calcium Carbonate only 15%. Vitamin D3 Helps the body absorb calcium — essential for bone strength'},
+          {i:'✅',t:'Magnesium and ZInc',x:'Magnesium prevents kidney and heart disorders and Zinc boost immunity and wound healing'},
+          {i:'☀️',t:'Active B Vitamins',x:'Reduce Homocysteine Levels and Provide Neuropathic Pain relief'},
+          {i:'💰',
+ t:'Competitors',
+ x:`
+ <table style="border-collapse:collapse;width:100%;font-size:12px">
+   <tr>
+     <th style="border:1px solid #ddd;padding:8px">Product</th>
+     <th style="border:1px solid #ddd;padding:8px">Company</th>
+     <th style="border:1px solid #ddd;padding:8px">MRP</th>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Calex Total</td>
+     <td style="border:1px solid #ddd;padding:8px">Rapross</td>
+     <td style="border:1px solid #ddd;padding:8px">₹11.90/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Supracal 2000</td>
+     <td style="border:1px solid #ddd;padding:8px">Pharmed</td>
+     <td style="border:1px solid #ddd;padding:8px">₹20.20/Tablet</td>
+   </tr>
+
+   <tr>
+     <td style="border:1px solid #ddd;padding:8px">Shelcal XT</td>
+     <td style="border:1px solid #ddd;padding:8px">Torrent</td>
+     <td style="border:1px solid #ddd;padding:8px">₹26.80/Tablet</td>
+   </tr>
+
+<tr>
+     <td style="border:1px solid #ddd;padding:8px">Me Mega</td>
+     <td style="border:1px solid #ddd;padding:8px">Systopic</td>
+     <td style="border:1px solid #ddd;padding:8px">₹13.90/Tablet</td>
+   </tr>
+
+ </table>`
+}],
      ind:['Calcium Deficiency','Osteopenia','Osteoporosis','Vitamin B12 Deficiency'],
      tag:'The 7-in-1 Total Recovery Formula'},
-    {name:'Calex-D3',form:'Tablet',badge:'Calcium + Vitamin D3',comp:'Calcium Citrate Malate 1170mg + Vitamin D3 1000IU',color:'#1565C0',
+    {name:'Calex-D3',form:'Tablet',badge:'Calcium + Vitamin D3',comp:'Calcium Citrate Malate 1170mg (Elemental Calcium 250mg) + Vitamin D3 1000IU',color:'#1565C0',
      hook:"India's smallest calcium tablet — highest absorption, no kidney stone risk.",
      kps:[{i:'📏',t:'Smallest tablet',x:"India's smallest calcium tablet — easy to swallow"},
-          {i:'☀️',t:'Vitamin D3 1000IU',x:'Full daily requirement of Vitamin D3'},
-          {i:'✅',t:'High absorption',x:'Absorbs without food — acid independent'},
+          {i:'☀️',t:'Vitamin D3 1000IU',x:'Complete daily requirement of Vitamin D3'},
+          {i:'✅',t:'High absorption',x:'Absorbs 45% — acid independent'},
           {i:'🪨',t:'No kidney stone risk',x:'Calcium Citrate Malate does not form kidney stones'}],
      ind:['Pregnancy & Lactation','Post-Menopausal Osteoporosis','Calcium Deficiency'],
      tag:'The Complete Calcium Supplement'},
