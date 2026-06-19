@@ -272,8 +272,6 @@ input{font-family:'Inter',sans-serif}
     <button class="btn-go" onclick="startApp()">Start Training →</button>
     <div class="w-stats">
       <div class="wstat"><div class="wstat-n">11</div><div class="wstat-l">Modules</div></div>
-      <div class="wstat"><div class="wstat-n">110</div><div class="wstat-l">Questions</div></div>
-      <div class="wstat"><div class="wstat-n">11</div><div class="wstat-l">Certificates</div></div>
     </div>
   </div>
 </div>
@@ -364,7 +362,7 @@ input{font-family:'Inter',sans-serif}
 <div class="cert-ov" id="cert-ov">
   <div class="cert-wrap">
     <div class="ctb">
-      <div class="ctb-t">🏆 Certificate of Completion</div>
+      <div class="ctb-t">Foundational Training Module Completion</div>
       <div class="ctb-btns">
         <button class="btn-print" onclick="window.print()">🖨️ Print</button>
         <button class="btn-cc" onclick="closeCert()">✕ Close</button>
@@ -374,31 +372,28 @@ input{font-family:'Inter',sans-serif}
       <div class="certificate">
         <div class="ct">
           <div><div class="ct-brand">Rapross <span>Pharmaceuticals</span></div><div class="ct-sub">A Friendly Hand in Healthcare</div></div>
-          <div style="text-align:right"><div style="color:var(--gold);font-size:13px;font-weight:700;font-family:'Poppins',sans-serif">🏆 CERTIFIED</div><div style="color:rgba(255,255,255,.6);font-size:10px">MR Training Portal</div></div>
+          <div style="text-align:right"><div style="color:var(--gold);font-size:13px;font-weight:700;font-family:'Poppins',sans-serif">Completed</div><div style="color:rgba(255,255,255,.6);font-size:10px">Foundational Training Module</div></div>
         </div>
         <div class="cgold"></div>
         <div class="cbody">
           <div class="cwm">RAPROSS</div>
-          <div class="c-of">Certificate of Completion</div>
+          <div class="c-of">Foundational Training Module Completion</div>
           <div class="c-main">Product Knowledge Training</div>
           <div class="c-div"><div class="cdline"></div><div class="cdstar">★ ★ ★</div><div class="cdline"></div></div>
-          <div class="c-pt">This is to certify that</div>
+          <div class="c-pt">Name</div>
           <div class="c-name" id="cert-name">Rep Name</div>
           <div class="c-hq" id="cert-hq">HQ: Location</div>
-          <div class="c-for">has successfully completed the training module for</div>
+          <div class="c-for">has successfully completed the Pre training module for</div>
           <div class="c-mod" id="cert-mod">Module Name</div>
           <div class="c-chip" id="cert-sc">Score: 10/10 · 100% · PASSED</div>
           <div class="c-meta">
             <div class="cmi"><div class="cmi-l">Date</div><div class="cmi-v" id="cert-dt">—</div></div>
-            <div class="cmi"><div class="cmi-l">Department</div><div class="cmi-v" id="cert-sec">—</div></div>
-            <div class="cmi"><div class="cmi-l">Valid For</div><div class="cmi-v">1 Year</div></div>
+            <div class="cmi"><div class="cmi-l">Segment</div><div class="cmi-v" id="cert-sec">—</div></div>
             <div class="cmi"><div class="cmi-l">Status</div><div class="cmi-v" style="color:var(--green)">✓ PASSED</div></div>
           </div>
         </div>
         <div class="cgold"></div>
         <div class="cftr">
-          <div class="cftr-l">Rapross Pharmaceuticals Pvt. Ltd. | 2nd Floor, Garg Plaza, Sector 8, Rohini, New Delhi</div>
-          <div class="cftr-r">🔒 Verified Certificate</div>
         </div>
       </div>
     </div>
@@ -988,9 +983,7 @@ function renderLearn(){
     +'<div class="ilbl">Used For</div><div class="itags">'+pr.ind.map(i=>'<span class="itag" style="color:'+c+';border-color:'+c+'40;background:'+lt(c)+'">'+i+'</span>').join('')+'</div>'
     +'<div class="tagbox" style="background:linear-gradient(135deg,'+c+','+dk(c,25)+')">'+pr.tag+'</div></div></div>'
     +'<div class="qcta"><div class="qcta-title">📝 Ready for the Quiz?</div>'
-    +'<div class="qcta-sub">Read all the product information above, then test your knowledge.'+(p?.passed?'<br><strong style="color:var(--green)">✅ You previously scored '+p.score+'/10. You can retake to improve.</strong>':'')+'</div>'
-    +'<div class="qcta-info"><span class="qcta-pill">❓ 10 questions</span><span class="qcta-pill">⭐ Pass mark: 85% (9/10)</span><span class="qcta-pill">🏆 Certificate on passing</span></div>'
-    +'<button class="btn-sq" onclick="startQuiz()">▶ Start Quiz</button></div>';
+    +'<div class="qcta-sub">Read all the product information above, then test your knowledge.'+(p?.passed?'<br><strong style="color:var(--green)">✅ You previously scored '+p.score+'/10. You can retake to improve.</strong>':'')+'</div>'    +'<button class="btn-sq" onclick="startQuiz()">▶ Start Quiz</button></div>';
 }
 function switchProd(i){apIdx=i;renderLearn();}
 function dk(hex,a){hex=hex.replace('#','');let r=parseInt(hex.slice(0,2),16),g=parseInt(hex.slice(2,4),16),b=parseInt(hex.slice(4,6),16);return '#'+[Math.max(0,r-a),Math.max(0,g-a),Math.max(0,b-a)].map(x=>x.toString(16).padStart(2,'0')).join('');}
